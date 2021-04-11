@@ -5,11 +5,12 @@ const Exit = preload("res://ExitDoor.tscn")
 
 var borders = Rect2(1, 1, 30, 17)
 onready var tileMap = $TileMap
+var load_saved_game = false
 
 func _ready():
 	randomize()
-	generate_Maze()
-	#generate_Level_Walker()
+	#generate_Maze()
+	generate_Level_Walker()
 
 # inspired by https://github.com/munificent/hauberk/blob/db360d9efa714efb6d937c31953ef849c7394a39/lib/src/content/dungeon.dart
 #
@@ -46,6 +47,9 @@ func generate_Level_Walker():
 func reload_level():
 	get_tree().reload_current_scene()
 
-func _input(event):
-	if event.is_action_pressed("interact"):
-		reload_level()
+#func _input(event):
+#	if event.is_action_pressed("interact"):
+#		reload_level()
+		
+func save():
+	pass
