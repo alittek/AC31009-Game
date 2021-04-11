@@ -4,6 +4,8 @@ var speed = 100
 var look_direction = "down"
 onready var animation = $AnimationPlayer
 
+onready var rayCast = $RayCast2D
+
 func _physics_process(_delta):
 	var movement = Vector2()
 	movement.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
