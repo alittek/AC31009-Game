@@ -2,6 +2,7 @@ extends Node2D
 
 const Player = preload("res://Player.tscn")
 const Exit = preload("res://ExitDoor.tscn")
+const NPC = preload("res://NPC.tscn")
 
 var borders = Rect2(1, 1, 30, 17)
 onready var tileMap = $TileMap
@@ -34,11 +35,17 @@ func generate_Level_Walker():
 	exit.position = walker.get_end_room().position*32
 	exit.connect("leaving_level", self, "reload_level")
 
-	
 	# place enemies/artifacts:
 	# walker.rooms() and the loop through the rooms
 	# or only plave in certain size rooms
+	var npc = NPC.instance()
+	add_child(npc)
+	npc.position = walker.get_end_room().position*31
+	
+	
+	
 
+	
 	walker.queue_free()
 	for location in map:
 			tileMap.set_cellv(location, -1)
