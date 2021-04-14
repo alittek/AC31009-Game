@@ -3,6 +3,7 @@ extends Node2D
 const Player = preload("res://Player.tscn")
 const Exit = preload("res://ExitDoor.tscn")
 const NPC = preload("res://NPC.tscn")
+const Chest = preload("res://Chest.tscn")
 
 var borders = Rect2(1, 1, 30, 17)
 onready var tileMap = $TileMap
@@ -26,6 +27,7 @@ func generate_Level_Walker():
 	var walker = Walker.new(Vector2(15, 9), borders)
 	var map = walker.walk(200)
 	
+	# needs to be placed first because of function calls
 	var player = Player.instance()
 	add_child(player)
 	player.position = map.front()*32
@@ -41,7 +43,10 @@ func generate_Level_Walker():
 	var npc = NPC.instance()
 	add_child(npc)
 	npc.position = walker.get_end_room().position*31
-	
+	# place artifacts
+	var chest = Chest.instance()
+	add_child(chest)
+	chest.position = walker.get_end_room().position*30
 	
 	
 
