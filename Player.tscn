@@ -128,7 +128,7 @@ tracks/0/keys = {
 
 [sub_resource type="CapsuleShape2D" id=9]
 radius = 17.983
-height = 6.34607
+height = 22.5071
 
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 0.5, 0.5 )
@@ -152,12 +152,13 @@ anims/Walk_right = SubResource( 7 )
 anims/Walk_up = SubResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 17.0757 )
+position = Vector2( 0, 7.06441 )
 shape = SubResource( 9 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2( 0, 2.47487 )
 enabled = true
+collide_with_areas = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

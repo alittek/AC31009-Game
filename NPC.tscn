@@ -128,7 +128,7 @@ tracks/0/keys = {
 
 [sub_resource type="CapsuleShape2D" id=9]
 radius = 17.983
-height = 23.4227
+height = 24.9211
 
 [node name="NPC" type="KinematicBody2D"]
 scale = Vector2( 0.5, 0.5 )

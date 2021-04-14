@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/009 treasure chests.png-6f500223918bb376f5b64a9689eec675.stex"
+path="res://.import/chests.png-5719153dd6fb3d30ea03f55e25cea0d1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TileMap/009 treasure chests.png"
-dest_files=[ "res://.import/009 treasure chests.png-6f500223918bb376f5b64a9689eec675.stex" ]
+source_file="res://TileMap/chests.png"
+dest_files=[ "res://.import/chests.png-5719153dd6fb3d30ea03f55e25cea0d1.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
