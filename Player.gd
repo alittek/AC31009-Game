@@ -1,9 +1,9 @@
 extends KinematicBody2D
 
+var artifacts : int = 3
 var speed = 100
 var look_direction = "down"
 onready var animation = $AnimationPlayer
-
 onready var rayCast = $RayCast2D
 
 func _physics_process(_delta):
@@ -33,3 +33,17 @@ func _physics_process(_delta):
 	elif movement == Vector2.ZERO:
 		animation.stop(false)
 		#animation.play(str("Idle_", look_direction ))
+
+# TODO player picks up items
+func get_artifact(amount):
+	artifacts += amount
+
+# player meets enemy
+func lose_artifact(amount):
+	artifacts -= amount
+	if artifacts <= 0:
+		die()
+		
+func die():
+	#TODO back to menu?
+	get_tree().reload_current_scene()
