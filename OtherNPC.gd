@@ -1,25 +1,34 @@
 extends KinematicBody2D
 
-var curHp : int = 5
-var maxHp : int = 5
-
+var curArt : int = 0
+var maxArt : int = 2
 var moveSpeed : int = 30
-var xpToGive : int = 30
 
-var damage : int = 1
-var attackRate : float = 1.0
-var attackDist : int = 80
+#var xpToGive : int = 30
+#var damage : int = 1
+#var attackRate : float = 1.0
+var stealDist : int = 40
+var amount : int = 1
+var stealRate : float = 1.0
 var chaseDist : int = 400
 
 onready var timer = $Timer
 onready var target = get_tree().root.get_node("WorldMap/Player")
 
+func _ready ():
+	timer.wait_time = stealRate
+	timer.start()
+
 func _physics_process (delta):
 	var vel : Vector2
 	var dist = position.distance_to(target.position)
+	# TODO if player not close patrol
+	if dist > chaseDist:
+		pass
+	
+	#if player close
 	if dist < chaseDist:
 		vel = (target.position - position).normalized()
-		print(vel)
 		move_and_slide(vel * moveSpeed)
 		
 	animate_NPC(vel)
@@ -51,3 +60,19 @@ func animate_NPC(direction: Vector2):
 #		var animation = get_animation_direction(last_direction) + "_idle"
 #		$AnimatedSprite.play(animation)
 		$AnimationPlayer.stop(false)
+
+
+func _on_Timer_timeout():
+	if position.distance_to(target.position) <= stealDist:
+		target.lose_artifact(amount)
+		steal_artifact(amount)
+
+# check if player has stolen set number of artifacts
+func steal_artifact(artToTake):
+	curArt += artToTake
+	if curArt >= maxArt:
+		flee()
+ 
+# enemy disapears
+func flee():
+	queue_free()
