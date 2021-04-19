@@ -19,7 +19,7 @@ func _init(starting_position, new_borders):
 func walk(steps):
 	place_room(position)
 	for step in steps:
-		if steps_since_turn >= 6:
+		if steps_since_turn >= 7:
 			change_direction()
 		
 		if step():
@@ -56,6 +56,7 @@ func place_room(position):
 	var size = Vector2(randi() % 4 + 2, randi() % 4 + 2)
 	var top_left_corner = (position - size/2).ceil()
 	rooms.append(create_room(position, size))
+	#print(create_room(position, size))
 	for y in size.y:
 		for x in size.x:
 			var new_step = top_left_corner + Vector2(x, y)
@@ -71,7 +72,28 @@ func get_end_room():
 			end_room = room
 	return end_room
 
+# TODO change number of chests according to level
 # get rooms in between for chests
-func get_rooms(number):
-	for room in rooms:
-		pass
+func get_rooms():
+	var size = rooms.size()
+	var newRooms = rooms
+	print("=======")
+	print(rooms)
+	for room in newRooms:
+		for key in room:
+			
+			if key == 'size':
+				print(key, room[key])
+				print("??????")
+				if room[key] < Vector2(2,4) or room[key] > Vector2(4,5):
+					print(room[key])
+					newRooms.erase(room)
+	print("=======")
+	var newSize = newRooms.size()
+	var result = newRooms.slice(0, newSize-10)
+	print(result)
+	#result = rooms.erase(get_end_room())
+	var i = result.find(get_end_room())
+	result.remove(i)
+
+	return result
