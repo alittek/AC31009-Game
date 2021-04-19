@@ -72,7 +72,7 @@ func animate_NPC(direction: Vector2):
 		# Choose walk animation based on movement direction
 		#var animation = get_animation_direction(last_direction) + "_walk"
 		var animation = "Walk_" + get_animation_direction(last_direction)
-		print(animation)
+		#print(animation)
 		# Play the walk animation
 		$AnimationPlayer.play(animation)
 	else:
