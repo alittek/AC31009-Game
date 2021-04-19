@@ -48,6 +48,7 @@ func _physics_process(_delta):
 # TODO player picks up items
 func get_artifact(amount):
 	artifacts += amount
+	$SoundPickup.play()
 	ui.update_artNb_text(artifacts)
 
 func _process(delta):

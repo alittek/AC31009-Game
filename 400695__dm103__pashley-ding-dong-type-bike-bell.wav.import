@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/400695__dm103__pashley-ding-dong-type-bike-bell.wav-113333bd57fd410d94ad88b8cf67919b.sample"
+
+[deps]
+
+source_file="res://400695__dm103__pashley-ding-dong-type-bike-bell.wav"
+dest_files=[ "res://.import/400695__dm103__pashley-ding-dong-type-bike-bell.wav-113333bd57fd410d94ad88b8cf67919b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
