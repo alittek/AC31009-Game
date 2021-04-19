@@ -71,7 +71,14 @@ func get_end_room():
 			end_room = room
 	return end_room
 
+# TODO change number of chests according to level
 # get rooms in between for chests
-func get_rooms(number):
-	for room in rooms:
-		pass
+func get_rooms():
+	var size = rooms.size()
+	var result = rooms.slice(2, size-5)
+	#result = rooms.erase(get_end_room())
+	var i = result.find(get_end_room())
+	result.remove(i)
+#	result.remove(i-1)
+#	result.remove(i-2)
+	return result

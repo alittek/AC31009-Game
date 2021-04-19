@@ -42,11 +42,12 @@ func generate_Level_Walker():
 	# or only plave in certain size rooms
 	var npc = NPC.instance()
 	add_child(npc)
-	npc.position = walker.get_end_room().position*31
+	npc.position = walker.get_end_room().position*32
 	# place artifacts
-	var chest = Chest.instance()
-	add_child(chest)
-	chest.position = walker.get_end_room().position*30
+	for room in walker.get_rooms():
+		var chest = Chest.instance()
+		add_child(chest)
+		chest.position = room.position*32
 	
 	
 
