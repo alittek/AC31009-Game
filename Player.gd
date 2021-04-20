@@ -2,7 +2,8 @@ extends KinematicBody2D
 
 onready var ui = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI")
 
-var artifacts : int = 3
+#var artifacts : int = 0
+#var level = Global.level
 var speed = 100
 var look_direction = "down"
 var facingDir = Vector2()
@@ -11,7 +12,9 @@ onready var animation = $AnimationPlayer
 onready var rayCast = $RayCast2D
 
 func _ready ():
-	ui.update_artNb_text(artifacts)
+	ui.update_artNb_text(Global.artifacts)
+	ui.update_level_text(Global.level)
+	
 
 func _physics_process(_delta):
 	var movement = Vector2()
@@ -47,9 +50,9 @@ func _physics_process(_delta):
 
 # TODO player picks up items
 func get_artifact(amount):
-	artifacts += amount
+	Global.set_artifacts(Global.artifacts+amount)
 	$SoundPickup.play()
-	ui.update_artNb_text(artifacts)
+	ui.update_artNb_text(Global.artifacts)
 
 func _process(delta):
 	if Input.is_action_just_pressed("interact"):
@@ -67,11 +70,11 @@ func try_interact():
 			rayCast.get_collider().on_interact(self)
 
 # player meets enemy
-func lose_artifact(amount):
-	artifacts -= amount
-	ui.update_artNb_text(artifacts)
-	if artifacts <= 0:
-		die()
+#func lose_artifact(amount):
+#	artifacts -= amount
+#	ui.update_artNb_text(artifacts)
+#	if artifacts <= 0:
+#		die()
 		
 func die():
 	#TODO back to menu?

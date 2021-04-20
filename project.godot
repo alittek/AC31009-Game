@@ -30,6 +30,10 @@ config/name="MazeGame"
 run/main_scene="res://StartScreen.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://global.gd"
+
 [display]
 
 window/size/width=320

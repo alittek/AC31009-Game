@@ -14,12 +14,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label_timer" type="Label" parent="LevelUI"]
+margin_left = 130.0
+margin_top = 10.0
+margin_right = 190.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Artifacts" type="ColorRect" parent="LevelUI"]
 margin_left = 290.0
 margin_top = 150.0
 margin_right = 310.0
 margin_bottom = 170.0
-color = Color( 0.796078, 0.780392, 0.780392, 1 )
+color = Color( 0.25098, 0.235294, 0.235294, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -30,6 +42,29 @@ margin_bottom = 20.0
 custom_fonts/font = ExtResource( 1 )
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level" type="ColorRect" parent="LevelUI"]
+margin_left = 290.0
+margin_top = 10.0
+margin_right = 310.0
+margin_bottom = 30.0
+color = Color( 0.25098, 0.235294, 0.235294, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LevelUI/Level"]
+margin_right = 20.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 1 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MenuPopup" type="Popup" parent="."]
 pause_mode = 2
