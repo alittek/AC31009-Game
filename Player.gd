@@ -2,7 +2,8 @@ extends KinematicBody2D
 
 onready var ui = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI")
 
-var artifacts : int = 3
+var artifacts : int = 0
+var level : int = 1
 var speed = 100
 var look_direction = "down"
 var facingDir = Vector2()
@@ -12,6 +13,8 @@ onready var rayCast = $RayCast2D
 
 func _ready ():
 	ui.update_artNb_text(artifacts)
+	ui.update_level_text(level)
+	
 
 func _physics_process(_delta):
 	var movement = Vector2()
