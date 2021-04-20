@@ -7,16 +7,17 @@ const Chest = preload("res://Chest.tscn")
 onready var timer_label = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI/Label_timer")
 onready var level_label = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI/Level/Label")
 
-onready var game_timer = get_node("Timer")
+#onready var game_timer = get_node("Timer")
 
 #TODO change for levels
 var xSize = 42
 var ySize = 29
 var borders = Rect2(1, 1, xSize, ySize)
+var timer
 
 var steps = Global.steps
 var level = Global.level
-var timer = Global.timer
+var time = Global.timer
 var enemies = Global.enemies
 
 onready var tileMap = $TileMap
@@ -24,12 +25,19 @@ var load_saved_game = false
 
 func _ready():
 	randomize()
+	timer = Timer.new()
+	timer.connect("timeout",self,"_on_timer_timeout") 
+	timer.set_wait_time(Global.timer) #value is in seconds: 600 seconds = 10 minutes
+	add_child(timer) 
+	timer.start() 
 	#generate_Maze()
 	generate_Level_Walker(steps)
 	
 
 func _process(delta):
-	timer_label.set_text(str(int(game_timer.get_time_left())))
+#	timer_label.set_text(str(int(game_timer.get_time_left())))
+	timer_label.set_text(str(int(timer.get_time_left())))
+	
 
 
 # inspired by https://github.com/munificent/hauberk/blob/db360d9efa714efb6d937c31953ef849c7394a39/lib/src/content/dungeon.dart
@@ -77,7 +85,7 @@ func generate_Level_Walker(newSteps):
 func next_level():
 	Global.set_steps(steps+50)
 	Global.set_level(level+1)
-	Global.set_timer(timer+(level*10))
+	Global.set_timer(timer.get_time_left()+(level*10))
 	Global.set_enemies(enemies+1)
 	get_tree().reload_current_scene()
 	#generate_Level_Walker(Global.steps)
@@ -90,6 +98,5 @@ func next_level():
 func save():
 	pass
 
-
-func _on_Timer_timeout():
+func _on_timer_timeout():
 	get_tree().change_scene("res://StartScreen.tscn")
