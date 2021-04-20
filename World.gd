@@ -14,7 +14,10 @@ var xSize = 42
 var ySize = 29
 var borders = Rect2(1, 1, xSize, ySize)
 
-var steps = 200
+var steps = Global.steps
+var level = Global.level
+var timer = Global.timer
+var enemies = Global.enemies
 
 onready var tileMap = $TileMap
 var load_saved_game = false
@@ -22,7 +25,7 @@ var load_saved_game = false
 func _ready():
 	randomize()
 	#generate_Maze()
-	generate_Level_Walker()
+	generate_Level_Walker(steps)
 	
 
 func _process(delta):
@@ -38,7 +41,8 @@ func generate_Maze():
 
 # inspired by https://github.com/uheartbeast/walker-level-gen
 # 
-func generate_Level_Walker():
+func generate_Level_Walker(newSteps):
+	steps = newSteps
 	var walker = Walker.new(Vector2(xSize/2, ySize/2), borders)
 	var map = walker.walk(steps)
 	
@@ -50,35 +54,38 @@ func generate_Level_Walker():
 	var exit = Exit.instance()
 	add_child(exit)
 	exit.position = walker.get_end_room().position*32
-	exit.connect("leaving_level", self, "reload_level")
+	exit.connect("leaving_level", self, "next_level")
 
-	# place enemies/artifacts:
-	# walker.rooms() and the loop through the rooms
-	# or only plave in certain size rooms
-	var npc = NPC.instance()
-	add_child(npc)
-	npc.position = walker.get_end_room().position*32
+	# TODO fix place enemies
+#	for number in range(enemies):
+#		var npc = NPC.instance()
+#		add_child(npc)
+#		npc.position = walker.get_end_room().position*32
+#
 	# place artifacts
 	for room in walker.get_rooms():
 		var chest = Chest.instance()
 		add_child(chest)
 		chest.position = room.position*32
 	
-	
-
-	
 	walker.queue_free()
 	for location in map:
 			tileMap.set_cellv(location, -1)
 	tileMap.update_bitmask_region(borders.position, borders.end)
 
-func reload_level():
+# run when a level is finished
+func next_level():
+	Global.set_steps(steps+50)
+	Global.set_level(level+1)
+	Global.set_timer(timer+(level*10))
+	Global.set_enemies(enemies+1)
 	get_tree().reload_current_scene()
+	#generate_Level_Walker(Global.steps)
 	
 
 #func _input(event):
 #	if event.is_action_pressed("interact"):
-#		reload_level()
+#		next_level()
 		
 func save():
 	pass
