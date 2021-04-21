@@ -29,6 +29,8 @@ func get_amount():
 func _on_Chest_body_entered(body):
 	if body.name == "Player":
 		body.get_artifact(artifactNb)
+		var owners = get_shape_owners()
+		shape_owner_clear_shapes(owners[0])
 		effect.start()
 		#queue_free()
 
