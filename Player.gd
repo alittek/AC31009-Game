@@ -49,8 +49,8 @@ func _physics_process(_delta):
 		#animation.play(str("Idle_", look_direction ))
 
 # TODO player picks up items
-func get_artifact(amount):
-	Global.set_artifacts(Global.artifacts+amount)
+func get_artifact():
+	Global.set_artifacts(Global.artifacts+1)
 	ui.update_artNb_text(Global.artifacts)
 	$SoundPickup.play()
 

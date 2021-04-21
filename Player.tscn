@@ -156,11 +156,6 @@ anims/Walk_up = SubResource( 8 )
 position = Vector2( 0, 7.06441 )
 shape = SubResource( 9 )
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2( 0, 2.47487 )
-enabled = true
-collide_with_areas = true
-
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 

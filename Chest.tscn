@@ -14,8 +14,7 @@ texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 6, 8, 20, 20 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-scale = Vector2( 1.2, 1.2 )
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="Effect" type="Tween" parent="."]

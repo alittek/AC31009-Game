@@ -4,39 +4,38 @@ extends Popup
 #onready var Player = preload("res://Player.tscn")
 #var player = Player.instance()
 
+onready var world = get_tree().root.get_node("WorldMap")
 #onready var player = get_node("../Player/Player")
 var already_paused
 var selected_menu
 
 func _ready():
-	pass
-
+	world.connect("death", self, "death_menu")
 
 func change_menu_color():
-	$Resume.color = Color.gray
-	$SaveGame.color = Color.gray
-	$MainMenu.color = Color.gray
+	$Restart.color = Color.gray
+	$Menu.color = Color.gray
+	$Quit.color = Color.gray
 	
 	match selected_menu:
 		0:
-			$Resume.color = Color.greenyellow
+			$Restart.color = Color.greenyellow
 		1:
-			$SaveGame.color = Color.greenyellow
+			$Menu.color = Color.greenyellow
 		2:
-			$MainMenu.color = Color.greenyellow
+			$Quit.color = Color.greenyellow
+
+func death_menu():
+	# Pause game
+	get_tree().paused = true
+	# Reset the popup
+	selected_menu = 0
+	change_menu_color()
+	popup()
 
 func _input(event):
-			
 	if not visible:
-		if Input.is_action_just_pressed("menu"):
-			# Pause game
-			get_tree().paused = true
-			# Reset the popup
-			selected_menu = 0
-			change_menu_color()
-			# Show popup
-			#player.set_process_input(false)
-			popup()
+		pass
 	else:
 		if Input.is_action_just_pressed("move_down"):
 			selected_menu = (selected_menu + 1) % 3;
@@ -50,19 +49,19 @@ func _input(event):
 		elif Input.is_action_just_pressed("interact"):
 			match selected_menu:
 				0:
-					# Resume game
-					if not already_paused:
-						get_tree().paused = false
-					#player.set_process_input(true)
-					hide()
+					# start again
+					# TODO reset everything
+					#Global.reset_values()
+					#get_tree().reload_current_scene()
+					get_node("/root/WorldMap").queue_free()
+					get_tree().change_scene("res://Map.tscn")
+					get_tree().paused = false
 				1:
-					# Save game
-					pass
-#					get_node("/root/Root").save()
-#					get_tree().paused = false
-#					hide()
-				2:
-					# Quit game, back to start screen
+					# go to main menu
 					get_node("/root/WorldMap").queue_free()
 					get_tree().change_scene("res://StartScreen.tscn")
 					get_tree().paused = false
+				2:
+					# Quit game
+					get_tree().quit()
+
