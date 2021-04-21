@@ -85,7 +85,7 @@ func generate_Level_Walker(newSteps):
 func next_level():
 	Global.set_steps(steps+50)
 	Global.set_level(level+1)
-	Global.set_timer(timer.get_time_left()+(level*10))
+	Global.set_timer(timer.get_time_left()+(level*5))
 	Global.set_enemies(enemies+1)
 	get_tree().reload_current_scene()
 	#generate_Level_Walker(Global.steps)
@@ -100,3 +100,4 @@ func save():
 
 func _on_timer_timeout():
 	get_tree().change_scene("res://StartScreen.tscn")
+	Global.reset_values()

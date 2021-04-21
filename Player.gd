@@ -7,9 +7,9 @@ onready var ui = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI")
 var speed = 100
 var look_direction = "down"
 var facingDir = Vector2()
-var interact_dis : int = 40
+#var interact_dis : int = 50
 onready var animation = $AnimationPlayer
-onready var rayCast = $RayCast2D
+#onready var rayCast = $RayCast2D
 
 func _ready ():
 	ui.update_artNb_text(Global.artifacts)
@@ -51,23 +51,19 @@ func _physics_process(_delta):
 # TODO player picks up items
 func get_artifact(amount):
 	Global.set_artifacts(Global.artifacts+amount)
-	$SoundPickup.play()
 	ui.update_artNb_text(Global.artifacts)
+	$SoundPickup.play()
 
-func _process(delta):
-	if Input.is_action_just_pressed("interact"):
-		try_interact()
-
-func try_interact():
-	pass
-	rayCast.cast_to = facingDir * interact_dis
-	if rayCast.is_colliding():
-		# TODO open walls
-		if rayCast.get_collider() is KinematicBody2D:
-#			rayCast.get_collider().take_damage(damage)
-			pass
-		elif rayCast.get_collider().has_method("on_interact"):
-			rayCast.get_collider().on_interact(self)
+#func _process(delta):
+#	if Input.is_action_just_pressed("interact"):
+#		try_interact()
+#
+#func try_interact():
+#	rayCast.cast_to = facingDir * interact_dis
+#	if rayCast.is_colliding():
+#		if rayCast.get_collider().has_method("on_interact"):
+#			rayCast.get_collider().on_interact(self)
+#			#get_artifact(1)
 
 # player meets enemy
 #func lose_artifact(amount):

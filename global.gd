@@ -20,3 +20,10 @@ func set_timer(newTimer):
 	
 func set_enemies(newEnemies):
 	enemies = newEnemies
+
+func reset_values():
+	steps = 20
+	level = 1
+	artifacts = 0
+	timer = 10
+	enemies = 0
