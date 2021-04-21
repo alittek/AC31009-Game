@@ -20,6 +20,7 @@ var level = Global.level
 var time = Global.timer
 var enemies = Global.enemies
 
+signal death
 onready var tileMap = $TileMap
 var load_saved_game = false
 
@@ -99,5 +100,6 @@ func save():
 	pass
 
 func _on_timer_timeout():
-	get_tree().change_scene("res://StartScreen.tscn")
+	emit_signal("death")
+	#get_tree().change_scene("res://StartScreen.tscn")
 	Global.reset_values()
