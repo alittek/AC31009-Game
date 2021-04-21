@@ -77,23 +77,23 @@ func get_end_room():
 func get_rooms():
 	var size = rooms.size()
 	var newRooms = rooms
-	print("=======")
-	print(rooms)
+	#print("=======")
+	#print(rooms)
 	for room in newRooms:
 		for key in room:
-			
 			if key == 'size':
-				print(key, room[key])
-				print("??????")
+				#print(key, room[key])
+				#print("??????")
 				if room[key] < Vector2(2,4) or room[key] > Vector2(4,5):
-					print(room[key])
+					#print(room[key])
 					newRooms.erase(room)
-	print("=======")
 	var newSize = newRooms.size()
-	var result = newRooms.slice(0, newSize-10)
-	print(result)
+	var result = newRooms.slice(2, newSize-10)
+	#print("=======")
+	#print(result)
 	#result = rooms.erase(get_end_room())
 	var i = result.find(get_end_room())
 	result.remove(i)
+	
 
 	return result
