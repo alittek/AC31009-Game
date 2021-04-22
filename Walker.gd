@@ -90,8 +90,7 @@ func get_rooms():
 	var result = newRooms.slice(1, newSize-2)
 	#print("=======")
 	#print(result)
-	#result = rooms.erase(get_end_room())
-	var i = result.find(get_end_room())
-	result.remove(i)
+#	var i = result.find(get_end_room())
+#	result.remove(i)
 
 	return result
