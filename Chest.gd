@@ -7,13 +7,12 @@ onready var sprite = get_node("Sprite")
 #onready var collision = create_shape_owner(get_node("CollisionShape2D2"))
 
 func _ready():
-	pass
-#	effect.interpolate_property(sprite, 'scale', 
-#			sprite.get_scale(), Vector2(2.0,2.0), 0.3, 
-#			Tween.TRANS_QUAD, Tween.EASE_OUT)
-#	effect.interpolate_property(sprite, 'modulate',
-#			Color(1,1,1,1), Color(1,1,1,0), 0.3, 
-#			Tween.TRANS_QUAD, Tween.EASE_OUT)
+	effect.interpolate_property(sprite, 'scale', 
+			sprite.get_scale(), Vector2(2.0,2.0), 0.3, 
+			Tween.TRANS_QUAD, Tween.EASE_OUT)
+	effect.interpolate_property(sprite, 'modulate',
+			Color(1,1,1,1), Color(1,1,1,0), 0.3, 
+			Tween.TRANS_QUAD, Tween.EASE_OUT)
 
 
 # TODO random amount of artifacts
@@ -40,8 +39,8 @@ func _on_Chest_body_entered(body):
 #		shape_owner_clear_shapes(owners[0])
 #		$CollisionShape.set_deferred("disabled", true)
 		body.get_artifact()
-		#effect.start()
-		queue_free()
+		effect.start()
+		#queue_free()
 		
 
 

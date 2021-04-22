@@ -72,8 +72,7 @@ func get_end_room():
 			end_room = room
 	return end_room
 
-# TODO change number of chests according to level
-# get rooms in between for chests
+# get rooms of certain size
 func get_rooms():
 	var size = rooms.size()
 	var newRooms = rooms
@@ -84,16 +83,14 @@ func get_rooms():
 			if key == 'size':
 				#print(key, room[key])
 				#print("??????")
-				if room[key] < Vector2(2,4) or room[key] > Vector2(4,5):
+				if room[key] < Vector2(1,2):
 					#print(room[key])
 					newRooms.erase(room)
 	var newSize = newRooms.size()
-	var result = newRooms.slice(2, newSize-10)
+	var result = newRooms.slice(1, newSize-2)
 	#print("=======")
 	#print(result)
-	#result = rooms.erase(get_end_room())
-	var i = result.find(get_end_room())
-	result.remove(i)
-	
+#	var i = result.find(get_end_room())
+#	result.remove(i)
 
 	return result

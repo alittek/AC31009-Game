@@ -4,8 +4,8 @@ const Player = preload("res://Player.tscn")
 const Exit = preload("res://ExitDoor.tscn")
 const NPC = preload("res://NPC.tscn")
 const Chest = preload("res://Chest.tscn")
-onready var timer_label = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI/Label_timer")
-onready var level_label = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI/Level/Label")
+onready var timer_label = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI/Timer/Label_timer")
+#onready var level_label = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI/Level/Label")
 
 #onready var game_timer = get_node("Timer")
 
@@ -15,11 +15,13 @@ var ySize = 29
 var borders = Rect2(1, 1, xSize, ySize)
 var timer
 
+# TODO remove?
 var steps = Global.steps
 var level = Global.level
 var time = Global.timer
 var enemies = Global.enemies
 
+var objects = []
 signal death
 onready var tileMap = $TileMap
 var load_saved_game = false
@@ -65,22 +67,36 @@ func generate_Level_Walker(newSteps):
 	exit.position = walker.get_end_room().position*32
 	exit.connect("leaving_level", self, "next_level")
 
-	# TODO fix place enemies
-#	for number in range(enemies):
-#		var npc = NPC.instance()
-#		add_child(npc)
-#		npc.position = walker.get_end_room().position*32
-
-	var nbChests = 0
 	# place artifacts
+	var nbChests = 0
 	for room in walker.get_rooms():
-		var chest = Chest.instance()
-		add_child(chest)
-		nbChests += 1
-		chest.position = room.position*32
+		if nbChests == Global.level-1:
+			break
+		else:
+			if free_space(room.position*32):
+				var chest = Chest.instance()
+				add_child(chest)
+				nbChests += 1
+				chest.position = room.position*32
 	
-	print("chests: " + str(nbChests))
-	print("______________")
+#	print("chests: " + str(nbChests))
+#	print("______________")
+
+	var nbEnemies = 0
+	for room in walker.get_rooms():
+		if nbEnemies >= Global.level-5:
+			break
+		else:
+			if free_space(room.position*32):
+				var npc = NPC.instance()
+				add_child(npc)
+				nbEnemies += 1
+				npc.position = room.position*32
+#				var newPos = room.position*32 - Vector2(1,-1)
+#				npc.position = newPos
+			
+		print("enemies: " + str(nbEnemies))
+		print("______________")
 	
 	walker.queue_free()
 	for location in map:
@@ -94,8 +110,17 @@ func next_level():
 	Global.set_timer(timer.get_time_left()+(level*5))
 	Global.set_enemies(enemies+1)
 	get_tree().reload_current_scene()
-	#generate_Level_Walker(Global.steps)
-	
+
+# check if space is available
+func free_space(vector):
+	# check if vector already in use
+	if objects.has(vector):
+		return false
+	else:
+		# add vector to list of filled spaces
+		objects.append(vector)
+		return true
+
 
 #func _input(event):
 #	if event.is_action_pressed("interact"):
@@ -106,5 +131,4 @@ func save():
 
 func _on_timer_timeout():
 	emit_signal("death")
-	#get_tree().change_scene("res://StartScreen.tscn")
 	Global.reset_values()

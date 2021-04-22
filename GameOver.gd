@@ -25,10 +25,18 @@ func change_menu_color():
 			$Quit.color = Color.greenyellow
 
 func update_artNb_text():
-	finalArt.text = str(Global.artifacts)
+	var number = calc_totalAtrifacts(Global.level-1)
+	finalArt.text = str(Global.artifacts) + " / " + str(number)
 
 func update_level_text():
 	finalLevel.text = str(Global.level)
+
+# get the total number of artifacts in the game so far
+func calc_totalAtrifacts(x):
+	if x == 1 or x == 0:
+		return 1
+	else:
+		return x + calc_totalAtrifacts(x-1)
 
 func death_menu():
 	# Pause game
