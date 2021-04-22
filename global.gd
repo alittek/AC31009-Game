@@ -1,9 +1,9 @@
 extends Node
 
 var steps = 120
-var level = 5
+var level = 1
 var artifacts = 0
-var timer = 500
+var timer = 10
 var enemies = 0
 
 func set_steps(newSteps):
