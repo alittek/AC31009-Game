@@ -65,22 +65,34 @@ func generate_Level_Walker(newSteps):
 	exit.position = walker.get_end_room().position*32
 	exit.connect("leaving_level", self, "next_level")
 
-	# TODO fix place enemies
-#	for number in range(enemies):
-#		var npc = NPC.instance()
-#		add_child(npc)
-#		npc.position = walker.get_end_room().position*32
-
-	var nbChests = 0
 	# place artifacts
+	var nbChests = 0
 	for room in walker.get_rooms():
-		var chest = Chest.instance()
-		add_child(chest)
-		nbChests += 1
-		chest.position = room.position*32
+		if nbChests == Global.level-1:
+			break
+		else:
+			var chest = Chest.instance()
+			add_child(chest)
+			nbChests += 1
+			chest.position = room.position*32
 	
-	print("chests: " + str(nbChests))
-	print("______________")
+#	print("chests: " + str(nbChests))
+#	print("______________")
+
+	var nbEnemies = 0
+	for room in walker.get_rooms():
+		if nbEnemies >= Global.level-5:
+			break
+		else:
+			var npc = NPC.instance()
+			add_child(npc)
+			nbEnemies += 1
+			var newPos = room.position*32 - Vector2(1,-1)
+			#npc.position = room.position*32
+			npc.position = newPos
+			
+		print("enemies: " + str(nbEnemies))
+		print("______________")
 	
 	walker.queue_free()
 	for location in map:
@@ -94,7 +106,6 @@ func next_level():
 	Global.set_timer(timer.get_time_left()+(level*5))
 	Global.set_enemies(enemies+1)
 	get_tree().reload_current_scene()
-	#generate_Level_Walker(Global.steps)
 	
 
 #func _input(event):
@@ -106,5 +117,4 @@ func save():
 
 func _on_timer_timeout():
 	emit_signal("death")
-	#get_tree().change_scene("res://StartScreen.tscn")
 	Global.reset_values()

@@ -84,7 +84,7 @@ func get_rooms():
 			if key == 'size':
 				#print(key, room[key])
 				#print("??????")
-				if room[key] < Vector2(2,4) or room[key] > Vector2(4,5):
+				if room[key] < Vector2(2,2) or room[key] > Vector2(5,5):
 					#print(room[key])
 					newRooms.erase(room)
 	var newSize = newRooms.size()
@@ -94,6 +94,5 @@ func get_rooms():
 	#result = rooms.erase(get_end_room())
 	var i = result.find(get_end_room())
 	result.remove(i)
-	
 
 	return result

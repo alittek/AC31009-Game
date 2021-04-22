@@ -1,7 +1,7 @@
 extends Node
 
-var steps = 40
-var level = 1
+var steps = 120
+var level = 5
 var artifacts = 0
 var timer = 500
 var enemies = 0
