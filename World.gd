@@ -70,12 +70,17 @@ func generate_Level_Walker(newSteps):
 #		var npc = NPC.instance()
 #		add_child(npc)
 #		npc.position = walker.get_end_room().position*32
-#
+
+	var nbChests = 0
 	# place artifacts
 	for room in walker.get_rooms():
 		var chest = Chest.instance()
 		add_child(chest)
+		nbChests += 1
 		chest.position = room.position*32
+	
+	print("chests: " + str(nbChests))
+	print("______________")
 	
 	walker.queue_free()
 	for location in map:
@@ -84,7 +89,7 @@ func generate_Level_Walker(newSteps):
 
 # run when a level is finished
 func next_level():
-	Global.set_steps(steps+50)
+	Global.set_steps(steps+20)
 	Global.set_level(level+1)
 	Global.set_timer(timer.get_time_left()+(level*5))
 	Global.set_enemies(enemies+1)

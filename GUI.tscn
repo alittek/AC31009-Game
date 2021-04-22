@@ -164,6 +164,9 @@ margin_top = 40.0
 margin_right = 260.0
 margin_bottom = 140.0
 color = Color( 0.313726, 0.313726, 0.313726, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Info" type="ColorRect" parent="GameOver"]
 margin_left = 70.0
@@ -176,11 +179,63 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="GameOver/Info"]
 margin_right = 120.0
-margin_bottom = 80.0
+margin_bottom = 20.0
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "GAME OVER"
 align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_level" type="Label" parent="GameOver/Info"]
+margin_left = 10.0
+margin_top = 30.0
+margin_right = 70.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "LEVEL: "
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_lev" type="Label" parent="GameOver/Info"]
+margin_left = 70.0
+margin_top = 30.0
+margin_right = 110.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_artifacts" type="Label" parent="GameOver/Info"]
+margin_left = 10.0
+margin_top = 60.0
+margin_right = 70.0
+margin_bottom = 80.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "ARTIFACTS: "
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_art" type="Label" parent="GameOver/Info"]
+margin_left = 70.0
+margin_top = 60.0
+margin_right = 110.0
+margin_bottom = 80.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 2
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
