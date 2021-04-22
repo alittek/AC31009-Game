@@ -1,8 +1,7 @@
 extends Popup
 
-### does not stop spacebar from working
-#onready var Player = preload("res://Player.tscn")
-#var player = Player.instance()
+onready var finalLevel : Label = get_node("Info/Label_lev")
+onready var finalArt : Label = get_node("Info/Label_art")
 
 onready var world = get_tree().root.get_node("WorldMap")
 #onready var player = get_node("../Player/Player")
@@ -25,12 +24,22 @@ func change_menu_color():
 		2:
 			$Quit.color = Color.greenyellow
 
+func update_artNb_text():
+	finalArt.text = str(Global.artifacts)
+
+func update_level_text():
+	finalLevel.text = str(Global.level)
+
 func death_menu():
 	# Pause game
 	get_tree().paused = true
 	# Reset the popup
 	selected_menu = 0
 	change_menu_color()
+	# updates the final score label
+	update_artNb_text()
+	update_level_text()
+	# display gameover screen
 	popup()
 
 func _input(event):
