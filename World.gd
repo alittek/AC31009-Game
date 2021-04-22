@@ -4,8 +4,8 @@ const Player = preload("res://Player.tscn")
 const Exit = preload("res://ExitDoor.tscn")
 const NPC = preload("res://NPC.tscn")
 const Chest = preload("res://Chest.tscn")
-onready var timer_label = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI/Label_timer")
-onready var level_label = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI/Level/Label")
+onready var timer_label = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI/Timer/Label_timer")
+#onready var level_label = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI/Level/Label")
 
 #onready var game_timer = get_node("Timer")
 
