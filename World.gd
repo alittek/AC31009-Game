@@ -57,15 +57,19 @@ func generate_Level_Walker(newSteps):
 	var walker = Walker.new(Vector2(xSize/2, ySize/2), borders)
 	var map = walker.walk(steps)
 	
+	var playerPos = map.front()*32
 	# needs to be placed first because of function calls
-	var player = Player.instance()
-	add_child(player)
-	player.position = map.front()*32
+	if free_space(playerPos):
+		var player = Player.instance()
+		add_child(player)
+		player.position = playerPos
 	
-	var exit = Exit.instance()
-	add_child(exit)
-	exit.position = walker.get_end_room().position*32
-	exit.connect("leaving_level", self, "next_level")
+	var exitPos = walker.get_end_room().position*32
+	if free_space(exitPos):
+		var exit = Exit.instance()
+		add_child(exit)
+		exit.position = exitPos
+		exit.connect("leaving_level", self, "next_level")
 
 	# place artifacts
 	var nbChests = 0
@@ -107,7 +111,7 @@ func generate_Level_Walker(newSteps):
 func next_level():
 	Global.set_steps(steps+20)
 	Global.set_level(level+1)
-	Global.set_timer(timer.get_time_left()+(level*5))
+	Global.set_timer(timer.get_time_left()+(level*3))
 	Global.set_enemies(enemies+1)
 	get_tree().reload_current_scene()
 

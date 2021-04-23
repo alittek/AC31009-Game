@@ -4,7 +4,7 @@
 [ext_resource path="res://MenuPopup.gd" type="Script" id=2]
 [ext_resource path="res://LevelUI.gd" type="Script" id=3]
 [ext_resource path="res://GameOver.gd" type="Script" id=4]
-[ext_resource path="res://TileMap/chests.png" type="Texture" id=5]
+[ext_resource path="res://TileMap/TreasureChests.png" type="Texture" id=5]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -73,7 +73,7 @@ texture = ExtResource( 5 )
 centered = false
 offset = Vector2( 4, 16 )
 region_enabled = true
-region_rect = Rect2( 6, 8, 20, 20 )
+region_rect = Rect2( 5, 5, 20, 20 )
 region_filter_clip = true
 
 [node name="Arti_Nb" type="Label" parent="LevelUI/LevelData"]

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/WallSet.png-ddb18b9c0e98ac61ac68ede68186fb44.stex"
+path="res://.import/TreasureChests.png-22083a3efd5d8a79026e38300673ed55.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TileMap/WallSet.png"
-dest_files=[ "res://.import/WallSet.png-ddb18b9c0e98ac61ac68ede68186fb44.stex" ]
+source_file="res://TileMap/TreasureChests.png"
+dest_files=[ "res://.import/TreasureChests.png-22083a3efd5d8a79026e38300673ed55.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
