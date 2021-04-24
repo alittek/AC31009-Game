@@ -3,6 +3,7 @@ extends Popup
 onready var finalLevel : Label = get_node("Info/Label_lev")
 onready var finalArt : Label = get_node("Info/Label_art")
 
+var file = load("res://FileSystem.gd").new()
 onready var world = get_tree().root.get_node("WorldMap")
 #onready var player = get_node("../Player/Player")
 var already_paused
@@ -47,8 +48,14 @@ func death_menu():
 	# updates the final score label
 	update_artNb_text()
 	update_level_text()
+	
+	set_highscore()
 	# display gameover screen
 	popup()
+	
+func set_highscore():
+	var score = Global.level * Global.artifacts
+	file.save_score(score)
 
 func _input(event):
 	if not visible:

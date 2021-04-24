@@ -32,7 +32,7 @@ text = "NEW GAME"
 align = 1
 valign = 1
 
-[node name="LoadGame" type="ColorRect" parent="."]
+[node name="HighScore" type="ColorRect" parent="."]
 margin_left = 70.0
 margin_top = 80.0
 margin_right = 250.0
@@ -41,12 +41,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="LoadGame"]
+[node name="Label" type="Label" parent="HighScore"]
 margin_right = 180.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "LOAD GAME"
+text = "HIGH SCORE"
 align = 1
 valign = 1
 
