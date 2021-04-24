@@ -14,14 +14,14 @@ func _ready():
 
 func change_menu_color():
 	$Resume.color = Color.gray
-	$SaveGame.color = Color.gray
+	$Help.color = Color.gray
 	$MainMenu.color = Color.gray
 	
 	match selected_menu:
 		0:
 			$Resume.color = Color.greenyellow
 		1:
-			$SaveGame.color = Color.greenyellow
+			$Help.color = Color.greenyellow
 		2:
 			$MainMenu.color = Color.greenyellow
 

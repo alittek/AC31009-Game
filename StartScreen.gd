@@ -4,14 +4,14 @@ var selected_menu = 0
 
 func change_menu_color():
 	$NewGame.color = Color.gray
-	$LoadGame.color = Color.gray
+	$HighScore.color = Color.gray
 	$Quit.color = Color.gray
 	
 	match selected_menu:
 		0:
 			$NewGame.color = Color.greenyellow
 		1:
-			$LoadGame.color = Color.greenyellow
+			$HighScore.color = Color.greenyellow
 		2:
 			$Quit.color = Color.greenyellow
 
@@ -34,8 +34,9 @@ func _input(event):
 				# New game
 				get_tree().change_scene("res://Map.tscn")
 			1:
-				# Load game
-				pass
+				# Highscore
+				get_tree().change_scene("res://GameScore.tscn")
+				
 #				var next_level_resource = load("res://Scenes/World.tscn");
 #				var next_level = next_level_resource.instance()
 #				next_level.load_saved_game = true
