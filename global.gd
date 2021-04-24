@@ -1,7 +1,7 @@
 extends Node
 
-var steps = 50
-var level = 1
+var steps = 20
+var level = 3
 var artifacts = 3
 var timer = 5
 var enemies = 0
@@ -25,5 +25,5 @@ func reset_values():
 	steps = 50
 	level = 1
 	artifacts = 0
-	timer = 60
+	timer = 10
 	enemies = 0
