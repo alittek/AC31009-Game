@@ -48,12 +48,14 @@ func death_menu():
 	# updates the final score label
 	update_artNb_text()
 	update_level_text()
-	get_highscore()
+	
+	set_highscore()
 	# display gameover screen
 	popup()
 	
-func get_highscore():
-	file.save_score()
+func set_highscore():
+	var score = Global.level * Global.artifacts
+	file.save_score(score)
 
 func _input(event):
 	if not visible:

@@ -2,7 +2,7 @@ extends Node
 
 var steps = 50
 var level = 1
-var artifacts = 0
+var artifacts = 3
 var timer = 5
 var enemies = 0
 

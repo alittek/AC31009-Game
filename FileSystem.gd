@@ -1,13 +1,20 @@
 extends Node
 
-var score_file = "user://score.save"
-var highscore = 20
+var score_file = "user://score2.save"
+var highscore
+var status
 
-func save_score():
+func save_score(highscore):
 	var file = File.new()
-	file.open(score_file, File.WRITE)
-	file.store_var(highscore)
-	file.close()
+	if file.file_exists(score_file):
+		status = file.open(score_file, File.READ_WRITE)
+	else:
+		status = file.open(score_file, File.WRITE)
+	
+	if status == OK:
+		file.seek_end()
+		file.store_var(highscore)
+		file.close()
 
 
 func load_score():
