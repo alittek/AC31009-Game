@@ -85,7 +85,7 @@ func generate_Level_Walker(newSteps):
 
 	var nbEnemies = 0
 	for room in walker.get_rooms():
-		if nbEnemies >= level-3:
+		if nbEnemies >= level:
 			break
 		else:
 			if free_space(room.position*32):

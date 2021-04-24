@@ -1,6 +1,6 @@
 extends Node
 
-var steps = 100
+var steps = 50
 var level = 1
 var artifacts = 0
 var timer = 100
