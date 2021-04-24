@@ -16,6 +16,7 @@ func change_menu_color():
 			$Quit.color = Color.greenyellow
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	change_menu_color()
 
 func _input(event):
