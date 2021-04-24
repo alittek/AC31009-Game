@@ -1,58 +1,65 @@
 extends KinematicBody2D
 
-# Node references
-var player
-# Random number generator
+var curArt : int = 0
+var maxArt : int = 2
+var moveSpeed : int = 30
+var stealDist : int = 40
+var amount : int = 1
+var stealRate : float = 1.0
+var chaseDist : int = 400
+var stolen : bool = false
+
+var state = "patrol"
+
 var rng = RandomNumberGenerator.new()
-# Movement variables
-export var speed = 25
-var direction : Vector2
-var last_direction = Vector2(0, 1)
-var bounce_countdown = 0
-# Animation variables
-var other_animation_playing = false
+var direc : Vector2
 
-func _ready():
-	player = get_tree().root.get_node("WorldMap/Player")
-	rng.randomize()
+onready var timer = $Timer
+onready var player = get_tree().root.get_node("WorldMap/Player")
 
-func _on_Timer_timeout():
-	# Calculate the position of the player relative to the skeleton
-	var player_relative_position = player.position - position
-	#print(player_relative_position)
+var player_in_range
+var player_in_sight
 
-	if player_relative_position.length() <= 16:
-		# If player is near, don't move but turn toward it
-		direction = Vector2.ZERO
-		last_direction = player_relative_position.normalized()
-	elif player_relative_position.length() <= 100 and bounce_countdown == 0:
-		# If player is within range, move toward it
-		direction = player_relative_position.normalized()
-	elif bounce_countdown == 0:
-		# If player is too far, randomly decide whether to stand still or where to move
-		var random_number = rng.randf()
-		if random_number < 0.05:
-			direction = Vector2.ZERO
-		elif random_number < 0.1:
-			direction = Vector2.DOWN.rotated(rng.randf() * 2 * PI)
+func _ready ():
+#	timer.wait_time = stealRate
+#	timer.start()
+	pass
 
-	# Update bounce countdown
-	if bounce_countdown > 0:
-		bounce_countdown = bounce_countdown - 1
+func _process(delta):
+	#state pattern to allow enemy behaviour
+	match state:
+		"patrol":
+			pass
+			#print("zzzzzzz")
+			patrol(delta)
+		"follow":
+			#print("taptaptap")
+			follow()
+		"search":
+			pass
+		"steal":
+			steal()
+		"flee":
+			flee()
+		
+
 
 func _physics_process(delta):
-	var movement = direction * speed * delta
-
-	var collision = move_and_collide(movement)
-
-	if collision != null and collision.collider.name != "Player":
-		direction = direction.rotated(rng.randf_range(PI/4, PI/2))
-		bounce_countdown = rng.randi_range(2, 5)
+	check_sight()
 	
-	# Animate skeleton based on direction
-	if not other_animation_playing:
-		animate_NPC(direction)
-
+#	var vel : Vector2
+#	var dist = position.distance_to(player.position)
+#	# TODO if player not close patrol
+#	if dist > chaseDist:
+#		pass
+#
+#	#if player close
+#	if dist < chaseDist:
+#		vel = (player.position - position).normalized()
+#		move_and_slide(vel * moveSpeed)
+#
+#	animate_NPC(vel)
+#
 func get_animation_direction(direction: Vector2):
 	var norm_direction = direction.normalized()
 	if norm_direction.y >= 0.707:
@@ -67,10 +74,8 @@ func get_animation_direction(direction: Vector2):
 
 func animate_NPC(direction: Vector2):
 	if direction != Vector2.ZERO:
-		last_direction = direction
-
+		var last_direction = direction
 		# Choose walk animation based on movement direction
-		#var animation = get_animation_direction(last_direction) + "_walk"
 		var animation = "Walk_" + get_animation_direction(last_direction)
 		#print(animation)
 		# Play the walk animation
@@ -80,3 +85,96 @@ func animate_NPC(direction: Vector2):
 #		var animation = get_animation_direction(last_direction) + "_idle"
 #		$AnimatedSprite.play(animation)
 		$AnimationPlayer.stop(false)
+
+#func _on_Timer_timeout():
+#	if position.distance_to(player.position) <= stealDist:
+#		player.lose_artifact(amount)
+#		steal_artifact(amount)
+#
+## check if player has stolen set number of artifacts
+#func steal_artifact(artToTake):
+#	curArt += artToTake
+#	if curArt >= maxArt:
+#		flee()
+
+
+
+# check if player is in sight of the enemy
+func check_sight():
+	if player_in_range == true:
+		# get snapshot of world with all bodies
+		var space_state = get_world_2d().direct_space_state
+		var sight_check = space_state.intersect_ray(position, player.position, [self], collision_mask)
+		if sight_check:
+			if sight_check.collider.name == "Player":
+				player_in_sight = true
+				state = "follow"
+				print("state: ", state)
+				if position.distance_to(player.position) <= stealDist:
+					state = "steal"
+					print("state: ", state)
+					if stolen == true:
+						state = "flee"
+						print("state: ", state)
+						#stolen = false
+			else:
+				state = "patrol"
+				print("state: ", state)
+	else:
+		player_in_sight = false
+		state = "patrol"
+		print("state: ", state)
+		#print("player in sight ", player_in_sight)
+
+func follow():
+	var vel : Vector2	
+	vel = (player.position - position).normalized()
+	move_and_slide(vel * moveSpeed)
+	animate_NPC(vel)
+
+func steal():
+	player.lose_artifact(amount)
+	stolen = true
+	return stolen
+#		steal_artifact(amount)
+#
+## check if player has stolen set number of artifacts
+#func steal_artifact(artToTake):
+#	curArt += artToTake
+#	if curArt >= maxArt:
+#		flee()
+
+func patrol(delta):
+	#if bounce_countdown == 0:
+	
+	# If player is too far, randomly decide whether to stand still or where to move
+	var random_number = rng.randf()
+	if random_number < 0.05:
+		direc = Vector2.ZERO
+	elif random_number < 0.1:
+		direc = Vector2.DOWN.rotated(rng.randf() * 2 * PI)
+
+	var movement = direc * moveSpeed * delta
+	var collision = move_and_collide(movement)
+	# Update bounce countdown
+#	if bounce_countdown > 0:
+#		bounce_countdown = bounce_countdown - 1
+
+# enemy disapears
+func flee():
+	print("..............................................")
+	queue_free()
+
+
+# sight area entered
+func _on_Sight_body_entered(body):
+	if body == player:
+		player_in_range = true
+		#print("player in range ", player_in_range)
+
+# sight area exited
+func _on_Sight_body_exited(body):
+	if body == player:
+		player_in_range = false
+		player_in_sight = false
+		#print("player in range ", player_in_range)

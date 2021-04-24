@@ -67,7 +67,10 @@ func get_artifact():
 
 # player meets enemy
 func lose_artifact(amount):
-	Global.set_artifacts(Global.artifacts-amount)
+	var newArti = Global.artifacts-amount
+	if newArti < 0:
+		return
+	Global.set_artifacts(newArti)
 	ui.update_artNb_text(Global.artifacts)
 #	if artifacts <= 0:
 #		die()

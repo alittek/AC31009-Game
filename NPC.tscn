@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://NPC/hooded.png" type="Texture" id=1]
 [ext_resource path="res://OtherNPC.gd" type="Script" id=2]
@@ -126,9 +126,11 @@ tracks/0/keys = {
 "values": [ 24, 25, 26, 27, 28, 29, 30, 31 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=9]
-radius = 17.983
-height = 24.9211
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 18.3656, 17.626 )
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 300.0
 
 [node name="NPC" type="KinematicBody2D"]
 scale = Vector2( 0.5, 0.5 )
@@ -152,8 +154,8 @@ anims/Walk_right = SubResource( 7 )
 anims/Walk_up = SubResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.52588e-05, 8.08586 )
-shape = SubResource( 9 )
+position = Vector2( 1.52588e-05, 17.8249 )
+shape = SubResource( 11 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2( 0, 2.47487 )
@@ -162,4 +164,11 @@ enabled = true
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.25
 autostart = true
+
+[node name="Sight" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sight"]
+shape = SubResource( 10 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="body_entered" from="Sight" to="." method="_on_Sight_body_entered"]
+[connection signal="body_exited" from="Sight" to="." method="_on_Sight_body_exited"]
