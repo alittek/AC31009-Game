@@ -128,7 +128,7 @@ tracks/0/keys = {
 
 [sub_resource type="CapsuleShape2D" id=9]
 radius = 17.983
-height = 24.9211
+height = 6.94144
 
 [node name="NPC" type="KinematicBody2D"]
 scale = Vector2( 0.5, 0.5 )
@@ -152,7 +152,7 @@ anims/Walk_right = SubResource( 7 )
 anims/Walk_up = SubResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.52588e-05, 8.08586 )
+position = Vector2( 1.52588e-05, 17.8249 )
 shape = SubResource( 9 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

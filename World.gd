@@ -5,11 +5,8 @@ const Exit = preload("res://ExitDoor.tscn")
 const NPC = preload("res://NPC.tscn")
 const Chest = preload("res://Chest.tscn")
 onready var timer_label = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI/Timer/Label_timer")
-#onready var level_label = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI/Level/Label")
 
-#onready var game_timer = get_node("Timer")
-
-#TODO change for levels
+# max sizes for world
 var xSize = 42
 var ySize = 29
 var borders = Rect2(1, 1, xSize, ySize)
@@ -30,7 +27,7 @@ func _ready():
 	randomize()
 	timer = Timer.new()
 	timer.connect("timeout",self,"_on_timer_timeout") 
-	timer.set_wait_time(Global.timer) #value is in seconds: 600 seconds = 10 minutes
+	timer.set_wait_time(time) #value is in seconds: 600 seconds = 10 minutes
 	add_child(timer) 
 	timer.start() 
 	#generate_Maze()
@@ -74,7 +71,7 @@ func generate_Level_Walker(newSteps):
 	# place artifacts
 	var nbChests = 0
 	for room in walker.get_rooms():
-		if nbChests == Global.level-1:
+		if nbChests == level-1:
 			break
 		else:
 			if free_space(room.position*32):
@@ -88,7 +85,7 @@ func generate_Level_Walker(newSteps):
 
 	var nbEnemies = 0
 	for room in walker.get_rooms():
-		if nbEnemies >= Global.level-5:
+		if nbEnemies >= level-3:
 			break
 		else:
 			if free_space(room.position*32):
@@ -98,9 +95,10 @@ func generate_Level_Walker(newSteps):
 				npc.position = room.position*32
 #				var newPos = room.position*32 - Vector2(1,-1)
 #				npc.position = newPos
-			
-		print("enemies: " + str(nbEnemies))
-		print("______________")
+
+	print("enemies: " + str(nbEnemies))
+	print("chests: " + str(nbChests))
+	print("______________")
 	
 	walker.queue_free()
 	for location in map:

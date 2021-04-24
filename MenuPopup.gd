@@ -6,7 +6,7 @@ extends Popup
 
 #onready var player = get_node("../Player/Player")
 var already_paused
-var selected_menu
+var selected_menu = 0
 
 func _ready():
 	pass
@@ -27,12 +27,12 @@ func change_menu_color():
 
 func _input(event):
 			
-	if not visible:
+	if not visible and get_tree().paused == false:
 		if Input.is_action_just_pressed("menu"):
 			# Pause game
 			get_tree().paused = true
 			# Reset the popup
-			selected_menu = 0
+			#selected_menu = 0
 			change_menu_color()
 			# Show popup
 			#player.set_process_input(false)
