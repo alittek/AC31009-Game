@@ -6,7 +6,6 @@ var password = "pass"
 var status
 var highscores
 
-
 func start():
 	save_score(3)
 	save_score(4)

@@ -16,28 +16,135 @@ __meta__ = {
 
 [node name="Score" type="ColorRect" parent="."]
 margin_left = 70.0
-margin_top = 30.0
+margin_top = 20.0
 margin_right = 250.0
-margin_bottom = 150.0
+margin_bottom = 140.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Score"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 175.0
-margin_bottom = 115.0
+[node name="Label1" type="Label" parent="Score"]
+margin_left = 40.0
+margin_top = 10.0
+margin_right = 80.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="Score"]
+margin_left = 40.0
+margin_top = 30.0
+margin_right = 80.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="Score"]
+margin_left = 40.0
+margin_top = 50.0
+margin_right = 80.0
+margin_bottom = 65.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="Score"]
+margin_left = 40.0
+margin_top = 70.0
+margin_right = 80.0
+margin_bottom = 85.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "4"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="Score"]
+margin_left = 40.0
+margin_top = 90.0
+margin_right = 80.0
+margin_bottom = 105.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "5"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_1" type="Label" parent="Score"]
+margin_left = 80.0
+margin_top = 10.0
+margin_right = 130.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_2" type="Label" parent="Score"]
+margin_left = 80.0
+margin_top = 30.0
+margin_right = 130.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_3" type="Label" parent="Score"]
+margin_left = 80.0
+margin_top = 50.0
+margin_right = 130.0
+margin_bottom = 65.0
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 valign = 1
 
+[node name="Label_4" type="Label" parent="Score"]
+margin_left = 80.0
+margin_top = 70.0
+margin_right = 130.0
+margin_bottom = 85.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 1
+valign = 1
+
+[node name="Label_5" type="Label" parent="Score"]
+margin_left = 80.0
+margin_top = 90.0
+margin_right = 130.0
+margin_bottom = 105.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Back" type="ColorRect" parent="."]
 margin_left = 140.0
-margin_top = 120.0
+margin_top = 140.0
 margin_right = 190.0
-margin_bottom = 140.0
+margin_bottom = 160.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
