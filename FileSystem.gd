@@ -1,28 +1,43 @@
 extends Node
 
 var score_file = "user://score.save"
-var highscore
+var password = "pass"
+#var password = OS.get_unique_id()
 var status
+var highscores
+
+func start():
+	save_score(30)
+	save_score(4)
+	save_score(100)
+	save_score(12)
 
 func save_score(highscore):
 	var file = File.new()
 	if file.file_exists(score_file):
 		status = file.open(score_file, File.READ_WRITE)
+		#status = file.open_encrypted_with_pass(score_file, File.READ_WRITE, password)
+		print("exists")
 	else:
+		pass
 		status = file.open(score_file, File.WRITE)
+		#status = file.open_encrypted_with_pass(score_file, File.WRITE, password)
+		print("doesnt exist")
 	
 	if status == OK:
 		file.seek_end()
-		file.store_string(str(highscore) + "\r")
+		file.store_string(str(highscore) + ",")
+		print("...", highscore)
 		file.close()
-
 
 func load_score():
 	var file = File.new()
 	if file.file_exists(score_file):
 		file.open(score_file, File.READ)
-		highscore = file.get_as_text()
+		#file.open_encrypted_with_pass(score_file, File.READ, password)
+		highscores = file.get_as_text()
 		file.close()
 	else:
-		highscore = 0
-	return highscore
+		return
+	print("score: ", highscores)
+	return highscores

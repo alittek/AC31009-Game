@@ -49,7 +49,7 @@ func death_menu():
 	update_artNb_text()
 	update_level_text()
 	
-	set_highscore()
+	#set_highscore()
 	# display gameover screen
 	popup()
 	
