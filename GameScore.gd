@@ -11,7 +11,7 @@ var array = []
 
 func _ready():
 	# can be removed, adds values to file
-	#file.start()
+	file.start()
 	var scores = file.load_score()
 	create_scores(scores)
 
