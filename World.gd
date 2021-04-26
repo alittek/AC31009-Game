@@ -37,14 +37,6 @@ func _ready():
 func _process(delta):
 #	timer_label.set_text(str(int(game_timer.get_time_left())))
 	timer_label.set_text(str(int(timer.get_time_left())))
-	
-
-
-# inspired by https://github.com/munificent/hauberk/blob/db360d9efa714efb6d937c31953ef849c7394a39/lib/src/content/dungeon.dart
-#
-func generate_Maze():
-	pass
-
 
 
 # inspired by https://github.com/uheartbeast/walker-level-gen

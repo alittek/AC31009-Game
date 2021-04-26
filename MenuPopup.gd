@@ -1,15 +1,7 @@
 extends Popup
 
-### does not stop spacebar from working
-#onready var Player = preload("res://Player.tscn")
-#var player = Player.instance()
-
-#onready var player = get_node("../Player/Player")
 var already_paused
 var selected_menu = 0
-
-func _ready():
-	pass
 
 
 func change_menu_color():
@@ -26,16 +18,14 @@ func change_menu_color():
 			$MainMenu.color = Color.greenyellow
 
 func _input(event):
-			
 	if not visible and get_tree().paused == false:
 		if Input.is_action_just_pressed("menu"):
 			# Pause game
 			get_tree().paused = true
 			# Reset the popup
-			#selected_menu = 0
+			selected_menu = 0
 			change_menu_color()
 			# Show popup
-			#player.set_process_input(false)
 			popup()
 	else:
 		if Input.is_action_just_pressed("move_down"):
@@ -56,11 +46,8 @@ func _input(event):
 					#player.set_process_input(true)
 					hide()
 				1:
-					# Save game
-					pass
-#					get_node("/root/Root").save()
-#					get_tree().paused = false
-#					hide()
+					var instr = preload("res://Instructions.tscn").instance()
+					add_child(instr)
 				2:
 					# Quit game, back to start screen
 					get_node("/root/WorldMap").queue_free()
