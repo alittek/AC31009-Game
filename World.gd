@@ -1,5 +1,6 @@
 extends Node2D
 
+const GUI = preload("res://GUI.tscn")
 const Player = preload("res://Player.tscn")
 const Exit = preload("res://ExitDoor.tscn")
 const NPC = preload("res://NPC.tscn")
@@ -37,14 +38,6 @@ func _ready():
 func _process(delta):
 #	timer_label.set_text(str(int(game_timer.get_time_left())))
 	timer_label.set_text(str(int(timer.get_time_left())))
-	
-
-
-# inspired by https://github.com/munificent/hauberk/blob/db360d9efa714efb6d937c31953ef849c7394a39/lib/src/content/dungeon.dart
-#
-func generate_Maze():
-	pass
-
 
 
 # inspired by https://github.com/uheartbeast/walker-level-gen
@@ -53,6 +46,9 @@ func generate_Level_Walker(newSteps):
 	steps = newSteps
 	var walker = Walker.new(Vector2(xSize/2, ySize/2), borders)
 	var map = walker.walk(steps)
+	
+	var gui = GUI.instance()
+	add_child(gui)
 	
 	var playerPos = map.front()*32
 	# needs to be placed first because of function calls
