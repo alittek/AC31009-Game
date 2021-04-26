@@ -68,6 +68,19 @@ func generate_Level_Walker(newSteps):
 		exit.position = exitPos
 		exit.connect("leaving_level", self, "next_level")
 
+	var nbEnemies = 0
+	for room in walker.get_rooms():
+		if nbEnemies >= level:
+			break
+		else:
+			if free_space(room.position*32):
+				var npc = NPC.instance()
+				add_child(npc)
+				nbEnemies += 1
+				npc.position = room.position*32
+#				var newPos = room.position*32 - Vector2(1,-1)
+#				npc.position = newPos
+
 	# place artifacts
 	var nbChests = 0
 	for room in walker.get_rooms():
@@ -83,18 +96,18 @@ func generate_Level_Walker(newSteps):
 #	print("chests: " + str(nbChests))
 #	print("______________")
 
-	var nbEnemies = 0
-	for room in walker.get_rooms():
-		if nbEnemies >= level:
-			break
-		else:
-			if free_space(room.position*32):
-				var npc = NPC.instance()
-				add_child(npc)
-				nbEnemies += 1
-				npc.position = room.position*32
-#				var newPos = room.position*32 - Vector2(1,-1)
-#				npc.position = newPos
+#	var nbEnemies = 0
+#	for room in walker.get_rooms():
+#		if nbEnemies >= level:
+#			break
+#		else:
+#			if free_space(room.position*32):
+#				var npc = NPC.instance()
+#				add_child(npc)
+#				nbEnemies += 1
+#				npc.position = room.position*32
+##				var newPos = room.position*32 - Vector2(1,-1)
+##				npc.position = newPos
 
 	print("enemies: " + str(nbEnemies))
 	print("chests: " + str(nbChests))
