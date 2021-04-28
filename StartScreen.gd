@@ -36,7 +36,7 @@ func _input(event):
 		match selected_menu:
 			0:
 				# New game
-				get_tree().change_scene("res://Map.tscn")
+				get_tree().change_scene("res://Intro.tscn")
 			1:
 				# Highscore
 				get_tree().change_scene("res://GameScore.tscn")
