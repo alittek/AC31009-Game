@@ -1,9 +1,9 @@
 extends Node2D
 
-const Player = preload("res://Player.tscn")
-const Exit = preload("res://ExitDoor.tscn")
-const NPC = preload("res://NPC.tscn")
-const Chest = preload("res://Chest.tscn")
+const Player = preload("res://Scenes/Player.tscn")
+const Exit = preload("res://Scenes/ExitDoor.tscn")
+const NPC = preload("res://Scenes/NPC.tscn")
+const Chest = preload("res://Scenes/Chest.tscn")
 onready var timer_label = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI/Timer/Label_timer")
 
 # max sizes for world

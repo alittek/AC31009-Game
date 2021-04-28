@@ -46,10 +46,10 @@ func _input(event):
 					#player.set_process_input(true)
 					hide()
 				1:
-					var instr = preload("res://Instructions.tscn").instance()
+					var instr = preload("res://Scenes/Instructions.tscn").instance()
 					add_child(instr)
 				2:
 					# Quit game, back to start screen
 					get_node("/root/WorldMap").queue_free()
-					get_tree().change_scene("res://StartScreen.tscn")
+					get_tree().change_scene("res://Scenes/StartScreen.tscn")
 					get_tree().paused = false

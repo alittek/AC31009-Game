@@ -6,7 +6,7 @@ onready var score3 : Label = get_node("Score/Label_3")
 onready var score4 : Label = get_node("Score/Label_4")
 onready var score5 : Label = get_node("Score/Label_5")
 
-var file = load("res://FileSystem.gd").new()
+var file = load("res://Scripts/FileSystem.gd").new()
 var array = []
 
 func _ready():

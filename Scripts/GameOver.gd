@@ -3,7 +3,7 @@ extends Popup
 onready var finalLevel : Label = get_node("Info/Label_lev")
 onready var finalArt : Label = get_node("Info/Label_art")
 
-var file = load("res://FileSystem.gd").new()
+var file = load("res://Scripts/FileSystem.gd").new()
 onready var world = get_tree().root.get_node("WorldMap")
 #onready var player = get_node("../Player/Player")
 var already_paused

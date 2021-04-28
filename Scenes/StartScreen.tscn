@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://StartScreen.gd" type="Script" id=1]
-[ext_resource path="res://Font/Font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Font/Font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/StartScreen.gd" type="Script" id=2]
 
 [node name="StartScreen" type="Node2D"]
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 320.0
@@ -26,7 +26,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="NewGame"]
 margin_right = 180.0
 margin_bottom = 20.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "NEW GAME"
 align = 1
@@ -44,7 +44,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="HighScore"]
 margin_right = 180.0
 margin_bottom = 20.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HIGH SCORE"
 align = 1
@@ -62,7 +62,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="Instructions"]
 margin_right = 180.0
 margin_bottom = 20.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "INSTRUCTIONS"
 align = 1
@@ -80,7 +80,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="Quit"]
 margin_right = 180.0
 margin_bottom = 20.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "QUIT"
 align = 1
