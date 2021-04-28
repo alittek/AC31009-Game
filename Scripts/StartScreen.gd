@@ -47,14 +47,15 @@ func _input(event):
 #				Transition.play_fadeOut()
 			2:
 				# Instructions
-				if instanced == false:
-					var instr = preload("res://Scenes/Instructions.tscn").instance()
-					#Transition.display_scene(instr)
-					Transition.play_fadeIn()
-					add_child(instr)
-					instanced = true
-					print("... child also added ......")
-					Transition.play_fadeOut()
+				Transition.change_stage("res://Scenes/Instructions.tscn")
+#				if instanced == false:
+#					var instr = preload("res://Scenes/Instructions.tscn").instance()
+#					#Transition.display_scene(instr)
+#					Transition.play_fadeIn()
+#					add_child(instr)
+#					instanced = true
+#					print("... child also added ......")
+#					Transition.play_fadeOut()
 			3:
 				# Quit game
 				Transition.play_fadeIn()

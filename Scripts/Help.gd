@@ -9,6 +9,7 @@ func _ready():
 
 func _input(event):
 	if Input.is_action_just_pressed("menu"):
+		Transition.change_stage("res://Scenes/StartScreen.tscn")
 		#Transition.play_fadeIn()
-		queue_free()
+		#queue_free()
 		#Transition.play_fadeOut()
