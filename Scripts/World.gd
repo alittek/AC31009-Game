@@ -116,7 +116,10 @@ func next_level():
 	Global.set_level(level+1)
 	Global.set_timer(timer.get_time_left()+(level*3))
 	Global.set_enemies(enemies+1)
-	get_tree().reload_current_scene()
+	Transition.change_stage("res://Scenes/Map.tscn")
+	#get_tree().edited_scene_root.filename
+	#Transition.reload(get_tree().get_current_scene())
+	#get_tree().reload_current_scene()
 
 # check if space is available
 func free_space(vector):

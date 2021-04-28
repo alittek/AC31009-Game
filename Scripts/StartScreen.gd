@@ -36,10 +36,12 @@ func _input(event):
 		match selected_menu:
 			0:
 				# New game
-				get_tree().change_scene("res://Scenes/Intro.tscn")
+				#get_tree().change_scene("res://Scenes/Intro.tscn")
+				Transition.change_stage("res://Scenes/Intro.tscn")
 			1:
 				# Highscore
-				get_tree().change_scene("res://Scenes/GameScore.tscn")
+				#get_tree().change_scene("res://Scenes/GameScore.tscn")
+				Transition.change_stage("res://Scenes/GameScore.tscn")
 				
 #				var next_level_resource = load("res://Scenes/World.tscn");
 #				var next_level = next_level_resource.instance()

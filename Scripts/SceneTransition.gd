@@ -1,19 +1,13 @@
-extends ColorRect
+extends CanvasLayer
 
 func _ready():
-	pass # Replace with function body.
-
+	pass
 
 func change_stage(scene_path):
 	# transition to black
-	get_node("AnimationPlayer").play("Fade")
-	yield(get_node("AnimationPlayer"),"animation_finished")
-	
+	get_node("SceneTransition/AnimationPlayer").play("Fade")
+	yield(get_node("SceneTransition/AnimationPlayer"),"animation_finished")
 	# switch scene
 	get_tree().change_scene(scene_path)
-	
 	# transition to clear
-	get_node("AnimationPlayer").play_backwards("Fade")
-	#yield(get_node("AnimationPlayer"),"animation_finished")
-	
-	pass
+	get_node("SceneTransition/AnimationPlayer").play_backwards("Fade")

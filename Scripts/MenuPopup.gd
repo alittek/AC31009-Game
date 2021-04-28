@@ -51,5 +51,6 @@ func _input(event):
 				2:
 					# Quit game, back to start screen
 					get_node("/root/WorldMap").queue_free()
-					get_tree().change_scene("res://Scenes/StartScreen.tscn")
+					#get_tree().change_scene("res://Scenes/StartScreen.tscn")
+					Transition.change_stage("res://Scenes/StartScreen.tscn")
 					get_tree().paused = false

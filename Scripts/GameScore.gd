@@ -60,6 +60,7 @@ func create_scores(score):
 	display_score()
 
 func _input(event):
-	if Input.is_action_just_pressed("interact"):
-		get_tree().change_scene("res://StartScreen.tscn")
+	if Input.is_action_just_pressed("menu"):
+		#get_tree().change_scene("res://Scenes/StartScreen.tscn")
+		Transition.change_stage("res://Scenes/StartScreen.tscn")
 

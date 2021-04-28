@@ -78,12 +78,12 @@ func _input(event):
 					#Global.reset_values()
 					#get_tree().reload_current_scene()
 					get_node("/root/WorldMap").queue_free()
-					get_tree().change_scene("res://Map.tscn")
+					Transition.change_stage("res://Scenes/Map.tscn")
 					get_tree().paused = false
 				1:
 					# go to main menu
 					get_node("/root/WorldMap").queue_free()
-					get_tree().change_scene("res://StartScreen.tscn")
+					Transition.change_stage("res://Scenes/StartScreen.tscn")
 					get_tree().paused = false
 				2:
 					# Quit game
