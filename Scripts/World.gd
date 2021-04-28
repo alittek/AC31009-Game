@@ -117,9 +117,6 @@ func next_level():
 	Global.set_timer(timer.get_time_left()+(level*3))
 	Global.set_enemies(enemies+1)
 	Transition.change_stage("res://Scenes/Map.tscn")
-	#get_tree().edited_scene_root.filename
-	#Transition.reload(get_tree().get_current_scene())
-	#get_tree().reload_current_scene()
 
 # check if space is available
 func free_space(vector):
@@ -130,14 +127,6 @@ func free_space(vector):
 		# add vector to list of filled spaces
 		objects.append(vector)
 		return true
-
-
-#func _input(event):
-#	if event.is_action_pressed("interact"):
-#		next_level()
-		
-func save():
-	pass
 
 func _on_timer_timeout():
 	emit_signal("death")

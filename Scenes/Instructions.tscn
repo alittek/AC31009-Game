@@ -3,7 +3,6 @@
 [ext_resource path="res://Font/Font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Scripts/Help.gd" type="Script" id=2]
 
-
 [node name="Help" type="Control"]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -15,19 +14,22 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 320.0
 margin_bottom = 180.0
-color = Color( 0.313726, 0.313726, 0.313726, 1 )
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Instructions" type="ColorRect" parent="."]
-margin_left = 70.0
+margin_left = 55.0
 margin_top = 20.0
-margin_right = 250.0
+margin_right = 265.0
 margin_bottom = 140.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Instructions"]
-margin_right = 180.0
+margin_right = 210.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -40,7 +42,7 @@ __meta__ = {
 
 [node name="Label_text" type="Label" parent="Instructions"]
 margin_top = 20.0
-margin_right = 180.0
+margin_right = 210.0
 margin_bottom = 120.0
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
