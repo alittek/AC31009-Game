@@ -16,7 +16,6 @@ func _ready():
 	create_scores(scores)
 
 func display_score():
-	$Back.color = Color.greenyellow
 	var arraySize = array.size()
 	# check number of scores saved and print at most the top 5
 	if arraySize > 0:
@@ -61,6 +60,5 @@ func create_scores(score):
 
 func _input(event):
 	if Input.is_action_just_pressed("menu"):
-		#get_tree().change_scene("res://Scenes/StartScreen.tscn")
 		Transition.change_stage("res://Scenes/StartScreen.tscn")
 
