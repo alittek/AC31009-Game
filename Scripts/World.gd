@@ -106,7 +106,8 @@ func generate_Level_Walker(newSteps):
 	print("chests: " + str(nbChests))
 	print("______________")
 	
-	turn_dark()
+	if Global.level == 5 or Global.level == 7:
+		turn_dark()
 	
 	walker.queue_free()
 	for location in map:
