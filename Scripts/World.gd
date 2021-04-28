@@ -4,6 +4,7 @@ const Player = preload("res://Scenes/Player.tscn")
 const Exit = preload("res://Scenes/ExitDoor.tscn")
 const NPC = preload("res://Scenes/NPC.tscn")
 const Chest = preload("res://Scenes/Chest.tscn")
+const Darkness = preload("res://Scenes/Darkness.tscn")
 onready var timer_label = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI/Timer/Label_timer")
 
 # max sizes for world
@@ -105,6 +106,8 @@ func generate_Level_Walker(newSteps):
 	print("chests: " + str(nbChests))
 	print("______________")
 	
+	turn_dark()
+	
 	walker.queue_free()
 	for location in map:
 			tileMap.set_cellv(location, -1)
@@ -127,6 +130,10 @@ func free_space(vector):
 		# add vector to list of filled spaces
 		objects.append(vector)
 		return true
+
+func turn_dark():
+	var dark = Darkness.instance()
+	add_child(dark)
 
 func _on_timer_timeout():
 	emit_signal("death")
