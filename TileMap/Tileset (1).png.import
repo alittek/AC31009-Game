@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/LightSprite.png-6bc53879f02a825df9f42afeac9ed79e.stex"
+path="res://.import/Tileset (1).png-e11efc38b90031ff8f918dc4d9b04c41.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/LightSprite.png"
-dest_files=[ "res://.import/LightSprite.png-6bc53879f02a825df9f42afeac9ed79e.stex" ]
+source_file="res://TileMap/Tileset (1).png"
+dest_files=[ "res://.import/Tileset (1).png-e11efc38b90031ff8f918dc4d9b04c41.stex" ]
 
 [params]
 
