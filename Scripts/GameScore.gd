@@ -6,7 +6,7 @@ onready var score3 : Label = get_node("Score/Label_3")
 onready var score4 : Label = get_node("Score/Label_4")
 onready var score5 : Label = get_node("Score/Label_5")
 
-var file = load("res://FileSystem.gd").new()
+var file = load("res://Scripts/FileSystem.gd").new()
 var array = []
 
 func _ready():
@@ -60,6 +60,7 @@ func create_scores(score):
 	display_score()
 
 func _input(event):
-	if Input.is_action_just_pressed("interact"):
-		get_tree().change_scene("res://StartScreen.tscn")
+	if Input.is_action_just_pressed("menu"):
+		#get_tree().change_scene("res://Scenes/StartScreen.tscn")
+		Transition.change_stage("res://Scenes/StartScreen.tscn")
 

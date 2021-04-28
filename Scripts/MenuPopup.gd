@@ -2,7 +2,7 @@ extends Popup
 
 var already_paused
 var selected_menu = 0
-
+var instanced = false
 
 func change_menu_color():
 	$Resume.color = Color.gray
@@ -46,10 +46,18 @@ func _input(event):
 					#player.set_process_input(true)
 					hide()
 				1:
-					var instr = preload("res://Instructions.tscn").instance()
-					add_child(instr)
+#					# TODO fade not working!!!
+					pass
+#					if instanced == false:
+#						var ins = preload("res://Scenes/Instructions.tscn").instance()
+#						#Transition.play_fadeIn()
+#						add_child(ins)
+#						instanced = true
+#						print(".................. child added ")
+#						#Transition.play_fadeOut()
 				2:
 					# Quit game, back to start screen
 					get_node("/root/WorldMap").queue_free()
-					get_tree().change_scene("res://StartScreen.tscn")
+					#get_tree().change_scene("res://Scenes/StartScreen.tscn")
+					Transition.change_stage("res://Scenes/StartScreen.tscn")
 					get_tree().paused = false

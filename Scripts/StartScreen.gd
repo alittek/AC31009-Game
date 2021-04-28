@@ -1,6 +1,7 @@
 extends Node2D
 
 var selected_menu = 0
+var instanced = false
 
 func change_menu_color():
 	$NewGame.color = Color.gray
@@ -36,20 +37,26 @@ func _input(event):
 		match selected_menu:
 			0:
 				# New game
-				get_tree().change_scene("res://Map.tscn")
+				Transition.change_stage("res://Scenes/Intro.tscn")
+				
 			1:
 				# Highscore
-				get_tree().change_scene("res://GameScore.tscn")
-				
-#				var next_level_resource = load("res://Scenes/World.tscn");
-#				var next_level = next_level_resource.instance()
-#				next_level.load_saved_game = true
-#				get_tree().root.call_deferred("add_child", next_level)
-#				queue_free()
+				Transition.change_stage("res://Scenes/GameScore.tscn")
+#				Transition.play_fadeIn()
+#				get_tree().change_scene("res://Scenes/GameScore.tscn")
+#				Transition.play_fadeOut()
 			2:
 				# Instructions
-				var instr = preload("res://Instructions.tscn").instance()
-				add_child(instr)
+				Transition.change_stage("res://Scenes/Instructions.tscn")
+#				if instanced == false:
+#					var instr = preload("res://Scenes/Instructions.tscn").instance()
+#					#Transition.display_scene(instr)
+#					Transition.play_fadeIn()
+#					add_child(instr)
+#					instanced = true
+#					print("... child also added ......")
+#					Transition.play_fadeOut()
 			3:
 				# Quit game
+				Transition.play_fadeIn()
 				get_tree().quit()

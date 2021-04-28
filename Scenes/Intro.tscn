@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Font/Font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/Intro.gd" type="Script" id=2]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 320.0
+margin_bottom = 180.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ColorRect"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 310.0
+margin_bottom = 170.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "You are a researcher at an excavation site when
+suddenly you fall through the floor and end up in 
+an underground maze. 
+But it soon turns out that there are
+ valuable artifacts to be found and you set out to
+ collect them all. 
+But watch out, there may be other people down here
+ who have their own agendas 
+and other surprises to be discovered.
+
+Arrow keys to navigate and ESC for game settings.
+<Press any key to start>"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

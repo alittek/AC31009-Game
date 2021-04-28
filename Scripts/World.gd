@@ -1,9 +1,9 @@
 extends Node2D
 
-const Player = preload("res://Player.tscn")
-const Exit = preload("res://ExitDoor.tscn")
-const NPC = preload("res://NPC.tscn")
-const Chest = preload("res://Chest.tscn")
+const Player = preload("res://Scenes/Player.tscn")
+const Exit = preload("res://Scenes/ExitDoor.tscn")
+const NPC = preload("res://Scenes/NPC.tscn")
+const Chest = preload("res://Scenes/Chest.tscn")
 onready var timer_label = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI/Timer/Label_timer")
 
 # max sizes for world
@@ -116,7 +116,7 @@ func next_level():
 	Global.set_level(level+1)
 	Global.set_timer(timer.get_time_left()+(level*3))
 	Global.set_enemies(enemies+1)
-	get_tree().reload_current_scene()
+	Transition.change_stage("res://Scenes/Map.tscn")
 
 # check if space is available
 func free_space(vector):
@@ -127,14 +127,6 @@ func free_space(vector):
 		# add vector to list of filled spaces
 		objects.append(vector)
 		return true
-
-
-#func _input(event):
-#	if event.is_action_pressed("interact"):
-#		next_level()
-		
-func save():
-	pass
 
 func _on_timer_timeout():
 	emit_signal("death")

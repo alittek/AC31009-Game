@@ -3,7 +3,7 @@ extends Popup
 onready var finalLevel : Label = get_node("Info/Label_lev")
 onready var finalArt : Label = get_node("Info/Label_art")
 
-var file = load("res://FileSystem.gd").new()
+var file = load("res://Scripts/FileSystem.gd").new()
 onready var world = get_tree().root.get_node("WorldMap")
 #onready var player = get_node("../Player/Player")
 var already_paused
@@ -78,12 +78,12 @@ func _input(event):
 					#Global.reset_values()
 					#get_tree().reload_current_scene()
 					get_node("/root/WorldMap").queue_free()
-					get_tree().change_scene("res://Map.tscn")
+					Transition.change_stage("res://Scenes/Map.tscn")
 					get_tree().paused = false
 				1:
 					# go to main menu
 					get_node("/root/WorldMap").queue_free()
-					get_tree().change_scene("res://StartScreen.tscn")
+					Transition.change_stage("res://Scenes/StartScreen.tscn")
 					get_tree().paused = false
 				2:
 					# Quit game

@@ -8,12 +8,24 @@ var state = "patrol"
 var rng = RandomNumberGenerator.new()
 var direc : Vector2
 
-var stealDist : int = 20
+var stealDist : int = 30
 var stolen = false
 var amount : int = 1
 var chaseDist : int = 400
 
+var triggered = false
+onready var effect = get_node("Effect")
+onready var sprite = get_node("Sprite")
+
 onready var player = get_tree().root.get_node("WorldMap/Player")
+
+func _ready():
+	effect.interpolate_property(sprite, 'scale', 
+			sprite.get_scale(), Vector2(0.7,0.7), 0.3, 
+			Tween.TRANS_QUAD, Tween.EASE_OUT)
+	effect.interpolate_property(sprite, 'modulate',
+			Color(1,1,1,1), Color(1,1,1,0), 0.3, 
+			Tween.TRANS_QUAD, Tween.EASE_OUT)
 
 # state pattern to run different NPC behaviour
 func _process(delta):
@@ -98,5 +110,7 @@ func patrol(delta):
 # enemy disapears
 func flee():
 	$AnimationPlayer.stop(false)
-	yield(get_tree().create_timer(1.5), "timeout")
+	effect.start()
+
+func _on_Effect_tween_completed(object, key):
 	queue_free()

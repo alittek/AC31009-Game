@@ -72,9 +72,3 @@ func lose_artifact(amount):
 		return
 	Global.set_artifacts(newArti)
 	ui.update_artNb_text(Global.artifacts)
-#	if artifacts <= 0:
-#		die()
-		
-func die():
-	#TODO back to menu?
-	get_tree().reload_current_scene()
