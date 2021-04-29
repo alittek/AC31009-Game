@@ -48,6 +48,15 @@ func generate_Level_Walker(newSteps):
 	var walker = Walker.new(Vector2(xSize/2, ySize/2), borders)
 	var map = walker.walk(steps)
 	
+	# place exit position on map (place in room furthest from player)
+	var exitPos = walker.get_end_room().position*32
+	if free_space(exitPos):
+		var exit = Exit.instance()
+		add_child(exit)
+		exit.position = exitPos
+		exit.connect("stop_timer", self, "pause_timer")
+		exit.connect("leaving_level", self, "next_level")
+	
 	# place player on map
 	var playerPos = map.front()*32
 	# needs to be placed first because of function calls
@@ -55,14 +64,6 @@ func generate_Level_Walker(newSteps):
 		player = Player.instance()
 		add_child(player)
 		player.position = playerPos
-	
-	# place exit position on map (place in room furthest from player)
-	var exitPos = walker.get_end_room().position*32
-	if free_space(exitPos):
-		var exit = Exit.instance()
-		add_child(exit)
-		exit.position = exitPos
-		exit.connect("leaving_level", self, "next_level")
 
 	# place enemies on map
 	var nbEnemies = 0
@@ -111,8 +112,8 @@ func generate_Level_Walker(newSteps):
 	print("______________")
 	
 	# decide when to r=turn on darkness
-	if Global.level == 5 or Global.level == 7:
-		turn_dark()
+	#if Global.level == 5 or Global.level == 7:
+	turn_dark()
 	
 	
 	walker.queue_free()
@@ -120,6 +121,9 @@ func generate_Level_Walker(newSteps):
 	for location in map:
 			tileMap.set_cellv(location, -1)
 	tileMap.update_bitmask_region(borders.position, borders.end)
+
+func pause_timer():
+	timer.paused = true	
 
 # run when a level is finished
 func next_level():

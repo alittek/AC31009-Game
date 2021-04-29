@@ -58,17 +58,6 @@ func get_artifact():
 	ui.update_artNb_text(Global.artifacts)
 	$SoundPickup.play()
 
-#func _process(delta):
-#	if Input.is_action_just_pressed("interact"):
-#		try_interact()
-#
-#func try_interact():
-#	rayCast.cast_to = facingDir * interact_dis
-#	if rayCast.is_colliding():
-#		if rayCast.get_collider().has_method("on_interact"):
-#			rayCast.get_collider().on_interact(self)
-#			#get_artifact(1)
-
 # player meets enemy
 func lose_artifact(amount):
 	var newArti = Global.artifacts-amount

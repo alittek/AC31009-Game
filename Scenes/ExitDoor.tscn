@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/ExitDoor.gd" type="Script" id=1]
 [ext_resource path="res://TileMap/stairs.png" type="Texture" id=2]
+[ext_resource path="res://Sounds/Exit.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
@@ -27,4 +28,6 @@ position = Vector2( 15.9541, 16.0083 )
 shape = SubResource( 1 )
 
 [node name="SoundExit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = 24.0
 [connection signal="body_entered" from="." to="." method="_on_ExitDoor_body_entered"]
