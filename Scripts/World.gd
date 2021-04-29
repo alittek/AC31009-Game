@@ -157,4 +157,4 @@ func turn_dark():
 # triggered when time runs out for player
 func _on_timer_timeout():
 	emit_signal("death")
-	Global.reset_values()
+	Global.set_values()

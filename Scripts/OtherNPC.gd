@@ -20,6 +20,7 @@ onready var sprite = get_node("Sprite")
 onready var player = get_tree().root.get_node("WorldMap/Player")
 
 func _ready():
+	# Tween effects created
 	effect.interpolate_property(sprite, 'scale', 
 			sprite.get_scale(), Vector2(0.7,0.7), 0.3, 
 			Tween.TRANS_QUAD, Tween.EASE_OUT)
@@ -44,6 +45,7 @@ func _process(delta):
 			#print("flee")
 			flee()
 
+# check player position constantly
 func _physics_process(delta):
 	var vel : Vector2
 	var dist = position.distance_to(player.position)
@@ -59,6 +61,7 @@ func _physics_process(delta):
 
 	animate_NPC(vel)
 
+# get the direction the player is pointing
 func get_animation_direction(direction: Vector2):
 	var norm_direction = direction.normalized()
 	if norm_direction.y >= 0.707:
@@ -71,6 +74,7 @@ func get_animation_direction(direction: Vector2):
 		return "right"
 	return "down"
 
+# play correct animation depending on player direction
 func animate_NPC(direction: Vector2):
 	if direction != Vector2.ZERO:
 		var last_direction = direction
@@ -80,13 +84,15 @@ func animate_NPC(direction: Vector2):
 		$AnimationPlayer.play(animation)
 		if state == "steal":
 			$AnimationPlayer.stop(false)
-	
+
+# handle folow state
 func follow(delta):
 	var vel : Vector2	
 	vel = (player.position - position).normalized()
 	move_and_slide(vel * moveSpeed)
 	animate_NPC(vel)
 
+# prcess steal state
 func steal():
 	player.lose_artifact(amount)
 	steal_artifact(amount)
@@ -97,6 +103,7 @@ func steal_artifact(artToTake):
 	if curArt >= maxArt:
 		stolen = true
 
+# handle patrol state
 func patrol(delta):
 	# If player is too far, randomly decide whether to stand still or where to move
 	var random_number = rng.randf()
@@ -112,5 +119,6 @@ func flee():
 	$AnimationPlayer.stop(false)
 	effect.start()
 
+# remove enemy after tween finishes playing
 func _on_Effect_tween_completed(object, key):
 	queue_free()

@@ -10,12 +10,13 @@ var file = load("res://Scripts/FileSystem.gd").new()
 var array = []
 
 func _ready():
-	# can be removed, adds values to file
+	# used fortesting to add values to file
 	#file.start()
 	
 	var scores = file.load_score()
 	create_scores(scores)
 
+# display the top five scores in the right labels
 func display_score():
 	var arraySize = array.size()
 	# check number of scores saved and print at most the top 5
@@ -47,18 +48,21 @@ func create_scores(score):
 	# sort array high to low
 	intArray.sort()	
 	
+	# set number of high scores
+	# 5 if 5 or more exist, otherwise all existing scores on file
 	var number_of_scores
 	if intArray.size() < 5:
 		number_of_scores = intArray.size()
 	else:
 		number_of_scores = 5
 	
-	# add five last values from array to highscore array
+	# add values from array to highscore array
 	for i in range(number_of_scores):
 		var finalScore = intArray[intArray.size()-(i+1)]
 		array.append(finalScore)
 	display_score()
 
+# if esc key pressed return to menu
 func _input(event):
 	if Input.is_action_just_pressed("menu"):
 		file.free()

@@ -3,6 +3,7 @@ extends Node2D
 var selected_menu = 0
 var instanced = false
 
+# change menu to indicate selected option
 func change_menu_color():
 	$NewGame.color = Color.gray
 	$HighScore.color = Color.gray
@@ -20,9 +21,11 @@ func change_menu_color():
 			$Quit.color = Color.greenyellow
 
 func _ready():
+	# hide mouse
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	change_menu_color()
 
+# handle manu selection
 func _input(event):
 	if Input.is_action_just_pressed("move_down"):
 		selected_menu = (selected_menu + 1) % 4;
@@ -42,20 +45,9 @@ func _input(event):
 			1:
 				# Highscore
 				Transition.change_stage("res://Scenes/GameScore.tscn")
-#				Transition.play_fadeIn()
-#				get_tree().change_scene("res://Scenes/GameScore.tscn")
-#				Transition.play_fadeOut()
 			2:
 				# Instructions
 				Transition.change_stage("res://Scenes/Instructions.tscn")
-#				if instanced == false:
-#					var instr = preload("res://Scenes/Instructions.tscn").instance()
-#					#Transition.display_scene(instr)
-#					Transition.play_fadeIn()
-#					add_child(instr)
-#					instanced = true
-#					print("... child also added ......")
-#					Transition.play_fadeOut()
 			3:
 				# Quit game
 				Transition.play_fadeIn()

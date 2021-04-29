@@ -5,13 +5,14 @@ onready var finalArt : Label = get_node("Info/Label_art")
 
 var file = load("res://Scripts/FileSystem.gd").new()
 onready var world = get_tree().root.get_node("WorldMap")
-#onready var player = get_node("../Player/Player")
+
 var already_paused
 var selected_menu
 
 func _ready():
 	world.connect("death", self, "death_menu")
 
+# change menu to indicate selected option
 func change_menu_color():
 	$Restart.color = Color.gray
 	$Menu.color = Color.gray
@@ -25,10 +26,12 @@ func change_menu_color():
 		2:
 			$Quit.color = Color.greenyellow
 
+# update the artifact score text
 func update_artNb_text():
 	var number = calc_totalAtrifacts(Global.level-1)
 	finalArt.text = str(Global.artifacts) + " / " + str(number)
 
+# upfdate the level text
 func update_level_text():
 	finalLevel.text = str(Global.level)
 
@@ -39,6 +42,7 @@ func calc_totalAtrifacts(x):
 	else:
 		return x + calc_totalAtrifacts(x-1)
 
+# initiate game over popup
 func death_menu():
 	# Pause game
 	get_tree().paused = true
@@ -52,12 +56,14 @@ func death_menu():
 	set_highscore()
 	# display gameover screen
 	popup()
-	
+
+# calc high score and save to file
 func set_highscore():
 	var score = Global.level * Global.artifacts
 	file.save_score(score)
 	file.free()
 
+# input in manu handled
 func _input(event):
 	if not visible:
 		pass
@@ -75,9 +81,6 @@ func _input(event):
 			match selected_menu:
 				0:
 					# start again
-					# TODO reset everything
-					#Global.reset_values()
-					#get_tree().reload_current_scene()
 					get_node("/root/WorldMap").queue_free()
 					Transition.change_stage("res://Scenes/Map.tscn")
 					get_tree().paused = false

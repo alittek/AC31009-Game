@@ -2,20 +2,17 @@ extends KinematicBody2D
 
 onready var ui = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI")
 var moving = true
-#var artifacts : int = 0
-#var level = Global.level
 var speed = 100
 var look_direction = "down"
 var facingDir = Vector2()
-#var interact_dis : int = 50
 onready var animation = $AnimationPlayer
-#onready var rayCast = $RayCast2D
 
+# initiate Ui displays
 func _ready ():
 	ui.update_artNb_text(Global.artifacts)
 	ui.update_level_text(Global.level)
 	
-
+# process player movement and direction to animate player
 func _physics_process(_delta):
 	if moving == true:
 		var movement = Vector2()
@@ -51,13 +48,13 @@ func _physics_process(_delta):
 			animation.stop(false)
 			$SoundSteps.stop()
 
-# TODO player picks up items
+# player picks up items, update UI
 func get_artifact():
 	Global.set_artifacts(Global.artifacts+1)
 	ui.update_artNb_text(Global.artifacts)
 	$SoundPickup.play()
 
-# player meets enemy
+# player meets enemy, update UI
 func lose_artifact(amount):
 	var newArti = Global.artifacts-amount
 	if newArti < 0:
@@ -67,5 +64,7 @@ func lose_artifact(amount):
 	$SoundEnemy.play()
 	#get_node("Light2D").show()
 
+# allows to disable player movement
 func disable_movement():
 	moving = false
+	animation.stop(false)
