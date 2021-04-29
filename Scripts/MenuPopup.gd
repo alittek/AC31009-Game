@@ -4,6 +4,7 @@ var already_paused
 var selected_menu = 0
 var instanced = false
 
+# change menu to indicate selected option
 func change_menu_color():
 	$Resume.color = Color.gray
 	$MainMenu.color = Color.gray
@@ -14,7 +15,9 @@ func change_menu_color():
 		1:
 			$MainMenu.color = Color.greenyellow
 
+# handle menu selection
 func _input(event):
+	# display popup if not visiblke yet
 	if not visible and get_tree().paused == false:
 		if Input.is_action_just_pressed("menu"):
 			# Pause game
@@ -31,8 +34,6 @@ func _input(event):
 		elif Input.is_action_just_pressed("move_up"):
 			if selected_menu > 0:
 				selected_menu = selected_menu - 1
-#			else:
-#				selected_menu = 2
 			change_menu_color()
 		elif Input.is_action_just_pressed("interact"):
 			match selected_menu:
@@ -45,6 +46,5 @@ func _input(event):
 				1:
 					# Quit game, back to start screen
 					get_node("/root/WorldMap").queue_free()
-					#get_tree().change_scene("res://Scenes/StartScreen.tscn")
 					Transition.change_stage("res://Scenes/StartScreen.tscn")
 					get_tree().paused = false

@@ -1,10 +1,20 @@
 extends Node
 
-var steps = 60
-var level = 2
-var artifacts = 20
-var timer = 65
-var enemies = 0
+var steps
+var level
+var artifacts
+var timer
+var enemies
+
+func _ready():
+	set_values()
+
+func set_values():
+	steps = 60
+	level = 2
+	artifacts = 20
+	timer = 65
+	enemies = 0
 
 func set_steps(newSteps):
 	steps = newSteps
@@ -20,10 +30,3 @@ func set_timer(newTimer):
 	
 func set_enemies(newEnemies):
 	enemies = newEnemies
-
-func reset_values():
-	steps = 50
-	level = 1
-	artifacts = 0
-	timer = 10
-	enemies = 0

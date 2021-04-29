@@ -6,12 +6,14 @@ var password = "pass"
 var status
 var highscores
 
+# adding scores for testing
 func start():
 	save_score(30)
 	save_score(4)
 	save_score(100)
 	save_score(12)
 
+# save a new score passed as argument
 func save_score(highscore):
 	var file = File.new()
 	if file.file_exists(score_file):
@@ -24,12 +26,14 @@ func save_score(highscore):
 		#status = file.open_encrypted_with_pass(score_file, File.WRITE, password)
 		print("doesnt exist")
 	
+	# if file was opened correctly
 	if status == OK:
 		file.seek_end()
 		file.store_string(str(highscore) + ",")
-		print("...", highscore)
+		#print("...", highscore)
 		file.close()
 
+# load all contents of the file and return them as a string
 func load_score():
 	var file = File.new()
 	if file.file_exists(score_file):
@@ -39,5 +43,5 @@ func load_score():
 		file.close()
 	else:
 		return
-	print("score: ", highscores)
+	#print("score: ", highscores)
 	return highscores
