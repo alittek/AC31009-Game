@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/PlayerMan.png" type="Texture" id=2]
 [ext_resource path="res://Sounds/Bell.wav" type="AudioStream" id=3]
 [ext_resource path="res://Player/light.png" type="Texture" id=4]
+[ext_resource path="res://Sounds/Drop.wav" type="AudioStream" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle_down"
@@ -168,5 +169,10 @@ current = true
 
 [node name="SoundPickup" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
+volume_db = -19.102
+attenuation = 0.125
+
+[node name="SoundEnemy" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
 volume_db = -19.102
 attenuation = 0.125

@@ -72,4 +72,5 @@ func lose_artifact(amount):
 		return
 	Global.set_artifacts(newArti)
 	ui.update_artNb_text(Global.artifacts)
+	$SoundEnemy.play()
 	#get_node("Light2D").show()
