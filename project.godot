@@ -40,7 +40,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "codeandweb.texturepacker" )
+enabled=PoolStringArray(  )
 
 [input]
 

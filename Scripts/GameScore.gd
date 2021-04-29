@@ -11,7 +11,8 @@ var array = []
 
 func _ready():
 	# can be removed, adds values to file
-	file.start()
+	#file.start()
+	
 	var scores = file.load_score()
 	create_scores(scores)
 
@@ -60,5 +61,7 @@ func create_scores(score):
 
 func _input(event):
 	if Input.is_action_just_pressed("menu"):
+		file.free()
+		queue_free()
 		Transition.change_stage("res://Scenes/StartScreen.tscn")
 
