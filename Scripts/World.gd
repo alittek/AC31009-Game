@@ -1,6 +1,7 @@
 extends Node2D
 
 const Player = preload("res://Scenes/Player.tscn")
+var player
 const Exit = preload("res://Scenes/ExitDoor.tscn")
 const NPC = preload("res://Scenes/NPC.tscn")
 const Chest = preload("res://Scenes/Chest.tscn")
@@ -50,7 +51,7 @@ func generate_Level_Walker(newSteps):
 	var playerPos = map.front()*32
 	# needs to be placed first because of function calls
 	if free_space(playerPos):
-		var player = Player.instance()
+		player = Player.instance()
 		add_child(player)
 		player.position = playerPos
 	
@@ -135,6 +136,7 @@ func free_space(vector):
 func turn_dark():
 	var dark = Darkness.instance()
 	add_child(dark)
+	player.get_node("Light2D").show()
 
 func _on_timer_timeout():
 	emit_signal("death")
