@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 onready var ui = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI")
-
+var moving = true
 #var artifacts : int = 0
 #var level = Global.level
 var speed = 100
@@ -17,40 +17,39 @@ func _ready ():
 	
 
 func _physics_process(_delta):
-	var movement = Vector2()
-	movement.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	movement.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
-	
-	var velocity = movement.clamped(1) * speed 
-	velocity = move_and_slide(velocity)
-	if not $SoundSteps.is_playing():
-		$SoundSteps.play()
-
-	if movement == Vector2.DOWN:
-			look_direction = "down"
-			facingDir = Vector2(0, 1)
-			animation.play(str("Walk_", look_direction ))
-
-	elif movement == Vector2.UP:
-			look_direction = "up"
-			facingDir = Vector2(0, -1)
-			animation.play(str("Walk_", look_direction ))
-
-	elif movement == Vector2.LEFT:
-			look_direction = "left"
-			facingDir = Vector2(-1, 0)
-			animation.play(str("Walk_", look_direction ))
-
-	elif movement == Vector2.RIGHT:
-			look_direction = "right"
-			facingDir = Vector2(1, 0)
-			animation.play(str("Walk_", look_direction ))
-
-	elif movement == Vector2.ZERO:
-		animation.stop(false)
-		$SoundSteps.stop()
+	if moving == true:
+		var movement = Vector2()
+		movement.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+		movement.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 		
-		#animation.play(str("Idle_", look_direction ))
+		var velocity = movement.clamped(1) * speed 
+		velocity = move_and_slide(velocity)
+		if not $SoundSteps.is_playing():
+			$SoundSteps.play()
+
+		if movement == Vector2.DOWN:
+				look_direction = "down"
+				facingDir = Vector2(0, 1)
+				animation.play(str("Walk_", look_direction ))
+
+		elif movement == Vector2.UP:
+				look_direction = "up"
+				facingDir = Vector2(0, -1)
+				animation.play(str("Walk_", look_direction ))
+
+		elif movement == Vector2.LEFT:
+				look_direction = "left"
+				facingDir = Vector2(-1, 0)
+				animation.play(str("Walk_", look_direction ))
+
+		elif movement == Vector2.RIGHT:
+				look_direction = "right"
+				facingDir = Vector2(1, 0)
+				animation.play(str("Walk_", look_direction ))
+
+		elif movement == Vector2.ZERO:
+			animation.stop(false)
+			$SoundSteps.stop()
 
 # TODO player picks up items
 func get_artifact():
@@ -67,3 +66,6 @@ func lose_artifact(amount):
 	ui.update_artNb_text(Global.artifacts)
 	$SoundEnemy.play()
 	#get_node("Light2D").show()
+
+func disable_movement():
+	moving = false

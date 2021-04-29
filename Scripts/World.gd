@@ -54,7 +54,7 @@ func generate_Level_Walker(newSteps):
 		var exit = Exit.instance()
 		add_child(exit)
 		exit.position = exitPos
-		exit.connect("stop_timer", self, "pause_timer")
+		exit.connect("stop_timer", self, "pause_player")
 		exit.connect("leaving_level", self, "next_level")
 	
 	# place player on map
@@ -122,8 +122,11 @@ func generate_Level_Walker(newSteps):
 			tileMap.set_cellv(location, -1)
 	tileMap.update_bitmask_region(borders.position, borders.end)
 
-func pause_timer():
+# pause player movement when exit reached
+func pause_player():
+	yield(get_tree().create_timer(0.3), "timeout")
 	timer.paused = true	
+	player.disable_movement()
 
 # run when a level is finished
 func next_level():
