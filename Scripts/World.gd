@@ -121,6 +121,7 @@ func next_level():
 	Global.set_level(level+1)
 	Global.set_timer(timer.get_time_left()+(level*3))
 	Global.set_enemies(enemies+1)
+	queue_free()
 	Transition.change_stage("res://Scenes/Map.tscn")
 
 # check if space is available
