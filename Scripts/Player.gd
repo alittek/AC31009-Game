@@ -23,6 +23,8 @@ func _physics_process(_delta):
 	
 	var velocity = movement.clamped(1) * speed 
 	velocity = move_and_slide(velocity)
+	if not $SoundSteps.is_playing():
+		$SoundSteps.play()
 
 	if movement == Vector2.DOWN:
 			look_direction = "down"
@@ -46,6 +48,8 @@ func _physics_process(_delta):
 
 	elif movement == Vector2.ZERO:
 		animation.stop(false)
+		$SoundSteps.stop()
+		
 		#animation.play(str("Idle_", look_direction ))
 
 # TODO player picks up items

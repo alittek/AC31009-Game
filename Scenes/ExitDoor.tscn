@@ -25,4 +25,6 @@ texture = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 15.9541, 16.0083 )
 shape = SubResource( 1 )
+
+[node name="SoundExit" type="AudioStreamPlayer2D" parent="."]
 [connection signal="body_entered" from="." to="." method="_on_ExitDoor_body_entered"]
