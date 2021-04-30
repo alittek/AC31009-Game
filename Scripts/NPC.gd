@@ -11,7 +11,7 @@ var direc : Vector2
 var stealDist : int = 30
 var stolen = false
 var amount : int = 1
-var chaseDist : int = 400
+var chaseDist : int = 300
 
 var triggered = false
 onready var effect = get_node("Effect")
@@ -33,16 +33,12 @@ func _process(delta):
 	#state pattern to allow enemy behaviour
 	match state:
 		"patrol":
-			#print("patrol")
 			patrol(delta)
 		"follow":
-			#print("follow")
 			follow(delta)
 		"steal":
-			#print("steal")
 			steal()
 		"flee":
-			#print("flee")
 			flee()
 
 # check player position constantly
@@ -94,6 +90,8 @@ func follow(delta):
 
 # prcess steal state
 func steal():
+	# TODO popup once when enemy first appears
+	# 
 	player.lose_artifact(amount)
 	steal_artifact(amount)
 	
