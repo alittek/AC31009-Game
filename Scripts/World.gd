@@ -9,8 +9,8 @@ const Darkness = preload("res://Scenes/Darkness.tscn")
 onready var timer_label = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI/Timer/Label_timer")
 
 # max sizes for world
-var xSize = 42
-var ySize = 29
+var xSize = 60
+var ySize = 44
 var borders = Rect2(1, 1, xSize, ySize)
 var timer
 
@@ -22,7 +22,7 @@ var enemies = Global.enemies
 
 var objects = []
 signal death
-onready var tileMap = $TileMap
+onready var tileMap = $TileWalls
 var load_saved_game = false
 
 func _ready():
@@ -33,23 +33,20 @@ func _ready():
 	add_child(timer) 
 	timer.start() 
 	generate_Level_Walker(steps)
-	
 
 # update timer text constantly
 func _process(delta):
-#	timer_label.set_text(str(int(game_timer.get_time_left())))
 	timer_label.set_text(str(int(timer.get_time_left())))
 
-
 # inspired by https://github.com/uheartbeast/walker-level-gen
-# 
+#
 func generate_Level_Walker(newSteps):
 	steps = newSteps
-	var walker = Walker.new(Vector2(xSize/2, ySize/2), borders)
-	var map = walker.walk(steps)
+	var generator = Generator.new(Vector2(xSize/2, ySize/2), borders)
+	var map = generator.walk(steps)
 	
 	# place exit position on map (place in room furthest from player)
-	var exitPos = walker.get_end_room().position*32
+	var exitPos = generator.get_end_room().position*32
 	if free_space(exitPos):
 		var exit = Exit.instance()
 		add_child(exit)
@@ -67,7 +64,7 @@ func generate_Level_Walker(newSteps):
 
 	# place enemies on map
 	var nbEnemies = 0
-	for room in walker.get_rooms():
+	for room in generator.get_rooms():
 		if nbEnemies >= level:
 			break
 		else:
@@ -76,12 +73,10 @@ func generate_Level_Walker(newSteps):
 				add_child(npc)
 				nbEnemies += 1
 				npc.position = room.position*32
-#				var newPos = room.position*32 - Vector2(1,-1)
-#				npc.position = newPos
 
 	# place artifacts on map 
 	var nbChests = 0
-	for room in walker.get_rooms():
+	for room in generator.get_rooms():
 		if nbChests == level-1:
 			break
 		else:
@@ -90,34 +85,18 @@ func generate_Level_Walker(newSteps):
 				add_child(chest)
 				nbChests += 1
 				chest.position = room.position*32
-	
-#	print("chests: " + str(nbChests))
-#	print("______________")
-
-#	var nbEnemies = 0
-#	for room in walker.get_rooms():
-#		if nbEnemies >= level:
-#			break
-#		else:
-#			if free_space(room.position*32):
-#				var npc = NPC.instance()
-#				add_child(npc)
-#				nbEnemies += 1
-#				npc.position = room.position*32
-##				var newPos = room.position*32 - Vector2(1,-1)
-##				npc.position = newPos
 
 	print("enemies: " + str(nbEnemies))
 	print("chests: " + str(nbChests))
 	print("______________")
 	
 	# decide when to r=turn on darkness
-	#if Global.level == 5 or Global.level == 7:
-	turn_dark()
+	#if level == 5 or level == 7:
+	#turn_dark()
 	
 	
-	walker.queue_free()
-	walker.free()
+	generator.queue_free()
+	generator.free()
 	for location in map:
 			tileMap.set_cellv(location, -1)
 	tileMap.update_bitmask_region(borders.position, borders.end)
@@ -144,7 +123,7 @@ func free_space(vector):
 	if objects.has(vector):
 		return false
 	else:
-		# add vector to list of filled spaces
+		# add vector to list of filled spaces for future
 		objects.append(vector)
 		return true
 
@@ -158,3 +137,8 @@ func turn_dark():
 func _on_timer_timeout():
 	emit_signal("death")
 	Global.set_values()
+
+## used for tetsing to skip through level progression on key press
+#func _input(event):
+#	if event.is_action_pressed("interact"):
+#		next_level()
