@@ -64,7 +64,7 @@ func death_menu():
 
 # calc high score and save to file
 func set_highscore():
-	var score = Global.level * Global.artifacts
+	var score = Global.level+(Global.level*Global.artifacts)
 	file.save_score(score)
 	update_score_text(score)
 	file.free()
