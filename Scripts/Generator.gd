@@ -1,13 +1,18 @@
 extends Node
 class_name Generator
 
+# save all four possible directions for steps
 const DIRECTIONS = [Vector2.RIGHT, Vector2.UP, Vector2.LEFT, Vector2.DOWN]
 
 var position = Vector2.ZERO
-var direction = Vector2.RIGHT
+# starting position: point left
+var direction = Vector2.LEFT
 var borders = Rect2()
+# save steps taken
 var step_history = []
+# keep track of number of steps
 var steps_since_turn = 0
+# array of rooms in existing maze
 var rooms = []
 
 # set up variables
@@ -25,7 +30,7 @@ func walk(steps):
 		# change map layout to more/ fewer rooms
 		if steps_since_turn >= 7:
 			change_direction()
-		# update stpes taken array
+		# update steps taken array
 		if step():
 			step_history.append(position)
 		else:
@@ -34,6 +39,7 @@ func walk(steps):
 
 # take new step if possible
 func step():
+	# get target for new step
 	var target_position = position + direction
 	if borders.has_point(target_position):
 		steps_since_turn += 1
@@ -45,9 +51,11 @@ func step():
 # place room and move into different direction
 func change_direction():
 	place_room(position)
-	steps_since_turn = 0 #reset steps when turning
+	#reset steps when turning
+	steps_since_turn = 0
 	var directions = DIRECTIONS.duplicate()
 	directions.erase(direction)
+	# get random direction from array
 	directions.shuffle()
 	direction = directions.pop_front()
 	while not borders.has_point(position + direction):
@@ -59,6 +67,7 @@ func create_room(position, size):
 
 # place room of random (within limits) size
 func place_room(position):
+	# get size for new room
 	var size = Vector2(randi() % 4 + 2, randi() % 4 + 2)
 	var top_left_corner = (position - size/2).ceil()
 	rooms.append(create_room(position, size))
@@ -69,14 +78,16 @@ func place_room(position):
 				step_history.append(new_step)
 
 # get array of rooms of certain size
-# used for placing objects in map
+# used for placing objects in World.gd
 func get_rooms():
 	var size = rooms.size()
 	var newRooms = rooms
 	for room in newRooms:
+		# get key from dictionary
 		for key in room:
+			# only check for size of entry
 			if key == 'size':
-				# delete  very small rooms
+				# delete very small rooms
 				if room[key] < Vector2(1,2):
 					newRooms.erase(room)
 	var newSize = newRooms.size()
@@ -84,7 +95,7 @@ func get_rooms():
 	#var result = newRooms.slice(1, newSize-2)
 	var result = newRooms
 	return result
-	
+
 # find room farthest from start position
 func get_end_room():
 	var end_room = rooms.pop_front()

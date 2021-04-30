@@ -1,37 +1,43 @@
 extends Node2D
 
+# preload scenes
 const Player = preload("res://Scenes/Player.tscn")
-var player
 const Exit = preload("res://Scenes/ExitDoor.tscn")
 const NPC = preload("res://Scenes/NPC.tscn")
 const Chest = preload("res://Scenes/Chest.tscn")
 const Darkness = preload("res://Scenes/Darkness.tscn")
-onready var timer_label = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI/Timer/Label_timer")
 
-# max sizes for world
-var xSize = 60
-var ySize = 44
-var borders = Rect2(1, 1, xSize, ySize)
-var timer
+signal death
 
-# TODO remove?
+# global variables
 var steps = Global.steps
 var level = Global.level
 var time = Global.timer
 var enemies = Global.enemies
 
+# max sizes for world
+var xSize = 60
+var ySize = 44
+var borders = Rect2(1, 1, xSize, ySize)
+
+# timer for playtime limit
+var timer
+onready var timer_label = get_tree().root.get_node("WorldMap/CanvasLayer/LevelUI/Timer/Label_timer")
+# keep track of placed objects
 var objects = []
-signal death
 onready var tileMap = $TileWalls
 var load_saved_game = false
+var player
 
 func _ready():
 	randomize()
+	# create timer
 	timer = Timer.new()
 	timer.connect("timeout",self,"_on_timer_timeout") 
 	timer.set_wait_time(time) #value is in seconds: 600 seconds = 10 minutes
 	add_child(timer) 
 	timer.start() 
+	# generate level maze
 	generate_Level_Walker(steps)
 
 # update timer text constantly
@@ -86,6 +92,7 @@ func generate_Level_Walker(newSteps):
 				nbChests += 1
 				chest.position = room.position*32
 
+	# print for testing
 	print("enemies: " + str(nbEnemies))
 	print("chests: " + str(nbChests))
 	print("______________")
@@ -94,9 +101,10 @@ func generate_Level_Walker(newSteps):
 	#if level == 5 or level == 7:
 	#turn_dark()
 	
-	
+	# free space for generator.gd script
 	generator.queue_free()
 	generator.free()
+	
 	for location in map:
 			tileMap.set_cellv(location, -1)
 	tileMap.update_bitmask_region(borders.position, borders.end)
