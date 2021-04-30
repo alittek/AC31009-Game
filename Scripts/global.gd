@@ -10,10 +10,10 @@ func _ready():
 	set_values()
 
 func set_values():
-	steps = 60
+	steps = 50
 	level = 1
 	artifacts = 0
-	timer = 15
+	timer = 60
 	#enemies = 0
 
 func set_steps(newSteps):

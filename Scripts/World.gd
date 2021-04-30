@@ -71,7 +71,7 @@ func generate_level(newSteps):
 	# place enemies on map
 	var nbEnemies = 0
 	for room in generator.get_rooms():
-		if nbEnemies >= level:
+		if nbEnemies >= level-3:
 			break
 		else:
 			if free_space(room.position*32):
@@ -86,11 +86,11 @@ func generate_level(newSteps):
 		if nbChests == level-1:
 			break
 		else:
-			if free_space(room.position*32):
-				var chest = Chest.instance()
-				add_child(chest)
-				nbChests += 1
-				chest.position = room.position*32
+			#if free_space(room.position*32):
+			var chest = Chest.instance()
+			add_child(chest)
+			nbChests += 1
+			chest.position = room.position*32
 
 	# print for testing
 	print("enemies: " + str(nbEnemies))
@@ -98,8 +98,8 @@ func generate_level(newSteps):
 	print("______________")
 	
 	# decide when to r=turn on darkness
-	#if level == 5 or level == 7:
-	#turn_dark()
+	if level == 5 or level == 7 or level >= 9:
+		turn_dark()
 	
 	# free space for generator.gd script
 	generator.queue_free()
@@ -119,7 +119,7 @@ func pause_player():
 func next_level():
 	Global.set_steps(steps+20)
 	Global.set_level(level+1)
-	Global.set_timer(timer.get_time_left()+(level*3))
+	Global.set_timer(timer.get_time_left()+(level*5))
 	#Global.set_enemies(enemies+1)
 	timer.free()
 	queue_free()
