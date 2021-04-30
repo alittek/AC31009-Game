@@ -49,6 +49,8 @@ func calc_totalAtrifacts(x):
 
 # initiate game over popup
 func death_menu():
+	#$SoundGameOver.play()
+	#yield($SoundGameOver, "finished")
 	# Pause game
 	get_tree().paused = true
 	# Reset the popup
@@ -58,9 +60,10 @@ func death_menu():
 	set_highscore()
 	update_artNb_text()
 	update_level_text()
-	
 	# display gameover screen
 	popup()
+#	$SoundGameOver.play()
+#	yield($SoundGameOver, "finished")
 
 # calc high score and save to file
 func set_highscore():
@@ -86,12 +89,12 @@ func _input(event):
 		elif Input.is_action_just_pressed("interact"):
 			match selected_menu:
 				0:
-					# start again
+					# Start again
 					get_node("/root/WorldMap").queue_free()
 					Transition.change_stage("res://Scenes/Map.tscn")
 					get_tree().paused = false
 				1:
-					# go to main menu
+					# To main menu
 					get_node("/root/WorldMap").queue_free()
 					Transition.change_stage("res://Scenes/StartScreen.tscn")
 					get_tree().paused = false

@@ -12,7 +12,7 @@ var array = []
 func _ready():
 	# used fortesting to add values to file
 	#file.start()
-	
+	#play sound
 	var scores = file.load_score()
 	create_scores(scores)
 
