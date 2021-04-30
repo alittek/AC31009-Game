@@ -2,6 +2,7 @@ extends Popup
 
 onready var finalLevel : Label = get_node("Info/Label_lev")
 onready var finalArt : Label = get_node("Info/Label_art")
+onready var finalScore : Label = get_node("Info/Label_sco")
 
 var file = load("res://Scripts/FileSystem.gd").new()
 onready var world = get_tree().root.get_node("WorldMap")
@@ -35,6 +36,10 @@ func update_artNb_text():
 func update_level_text():
 	finalLevel.text = str(Global.level)
 
+# upfdate the score text
+func update_score_text(newScore):
+	finalScore.text = str(newScore)
+
 # get the total number of artifacts in the game so far
 func calc_totalAtrifacts(x):
 	if x == 1 or x == 0:
@@ -50,10 +55,10 @@ func death_menu():
 	selected_menu = 0
 	change_menu_color()
 	# updates the final score label
+	set_highscore()
 	update_artNb_text()
 	update_level_text()
 	
-	set_highscore()
 	# display gameover screen
 	popup()
 
@@ -61,6 +66,7 @@ func death_menu():
 func set_highscore():
 	var score = Global.level * Global.artifacts
 	file.save_score(score)
+	update_score_text(score)
 	file.free()
 
 # input in manu handled

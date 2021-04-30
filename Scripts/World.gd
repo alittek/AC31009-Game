@@ -13,7 +13,7 @@ signal death
 var steps = Global.steps
 var level = Global.level
 var time = Global.timer
-var enemies = Global.enemies
+#var enemies = Global.enemies
 
 # max sizes for world
 var xSize = 60
@@ -38,7 +38,7 @@ func _ready():
 	add_child(timer) 
 	timer.start() 
 	# generate level maze
-	generate_Level_Walker(steps)
+	generate_level(steps)
 
 # update timer text constantly
 func _process(delta):
@@ -46,7 +46,7 @@ func _process(delta):
 
 # inspired by https://github.com/uheartbeast/walker-level-gen
 #
-func generate_Level_Walker(newSteps):
+func generate_level(newSteps):
 	steps = newSteps
 	var generator = Generator.new(Vector2(xSize/2, ySize/2), borders)
 	var map = generator.walk(steps)
@@ -120,7 +120,7 @@ func next_level():
 	Global.set_steps(steps+20)
 	Global.set_level(level+1)
 	Global.set_timer(timer.get_time_left()+(level*3))
-	Global.set_enemies(enemies+1)
+	#Global.set_enemies(enemies+1)
 	timer.free()
 	queue_free()
 	Transition.change_stage("res://Scenes/Map.tscn")
