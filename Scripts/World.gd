@@ -33,6 +33,7 @@ func _ready():
 	randomize()
 	# create timer
 	timer = Timer.new()
+	timer.one_shot = true
 	timer.connect("timeout",self,"_on_timer_timeout") 
 	timer.set_wait_time(time) #value is in seconds: 600 seconds = 10 minutes
 	add_child(timer) 
@@ -40,11 +41,12 @@ func _ready():
 	# generate level maze
 	generate_level(steps)
 
+# in use when an enemy steals time from the player
+# take 10 seconds from timer
 func remove_time():
 	var currTime = timer.get_time_left()
 	if currTime > 10:
-		print("...TIME STOLEN .................")
-		timer.set_wait_time(currTime-10) #value is in seconds: 600 seconds = 10 minutes
+		timer.set_wait_time(currTime-5) #value is in seconds: 600 seconds = 10 minutes
 	else:
 		timer.set_wait_time(1)
 	timer.start()
@@ -153,6 +155,9 @@ func turn_dark():
 
 # triggered when time runs out for player
 func _on_timer_timeout():
+	#timer_label.set_text(str("0"))
+	#$SoundGameOver.play()
+	#yield($SoundGameover, "finished")
 	emit_signal("death")
 	Global.set_values()
 

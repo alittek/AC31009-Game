@@ -19,12 +19,12 @@ func save_score(highscore):
 	if file.file_exists(score_file):
 		status = file.open(score_file, File.READ_WRITE)
 		#status = file.open_encrypted_with_pass(score_file, File.READ_WRITE, password)
-		print("exists")
+		#print("exists")
 	else:
 		pass
 		status = file.open(score_file, File.WRITE)
 		#status = file.open_encrypted_with_pass(score_file, File.WRITE, password)
-		print("doesnt exist")
+		#print("doesnt exist")
 	
 	# if file was opened correctly
 	if status == OK:

@@ -91,9 +91,7 @@ func follow(delta):
 # process steal state
 func steal():
 	# TODO popup once when enemy first appears
-#	if triggered == true:
-#		return
-#	triggered = true
+	# if high level also steal time from player
 	if Global.level > 14:
 		emit_signal("steal_time")
 	player.lose_artifact(amount)
@@ -104,9 +102,6 @@ func steal_artifact(artToTake):
 	curArt += artToTake
 	if curArt >= maxArt:
 		stolen = true
-
-func steal_time():
-	pass
 
 # handle patrol state
 func patrol(delta):

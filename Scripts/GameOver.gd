@@ -49,8 +49,6 @@ func calc_totalAtrifacts(x):
 
 # initiate game over popup
 func death_menu():
-	#$SoundGameOver.play()
-	#yield($SoundGameOver, "finished")
 	# Pause game
 	get_tree().paused = true
 	# Reset the popup
@@ -62,8 +60,9 @@ func death_menu():
 	update_level_text()
 	# display gameover screen
 	popup()
-#	$SoundGameOver.play()
-#	yield($SoundGameOver, "finished")
+	#$SoundGameOver.set_volume_db(2)
+	$SoundGameOver.play()
+	yield($SoundGameOver, "finished")
 
 # calc high score and save to file
 func set_highscore():
