@@ -40,6 +40,15 @@ func _ready():
 	# generate level maze
 	generate_level(steps)
 
+func remove_time():
+	var currTime = timer.get_time_left()
+	if currTime > 10:
+		print("...TIME STOLEN .................")
+		timer.set_wait_time(currTime-10) #value is in seconds: 600 seconds = 10 minutes
+	else:
+		timer.set_wait_time(1)
+	timer.start()
+
 # update timer text constantly
 func _process(delta):
 	timer_label.set_text(str(int(timer.get_time_left())))
@@ -71,7 +80,7 @@ func generate_level(newSteps):
 	# place enemies on map
 	var nbEnemies = 0
 	for room in generator.get_rooms():
-		if nbEnemies >= level-3:
+		if nbEnemies >= level-5:
 			break
 		else:
 			if free_space(room.position*32):
@@ -79,6 +88,7 @@ func generate_level(newSteps):
 				add_child(npc)
 				nbEnemies += 1
 				npc.position = room.position*32
+				npc.connect("steal_time", self, "remove_time")
 
 	# place artifacts on map 
 	var nbChests = 0
@@ -98,7 +108,7 @@ func generate_level(newSteps):
 	print("______________")
 	
 	# decide when to r=turn on darkness
-	if level == 5 or level == 7 or level >= 9:
+	if level == 5 or level == 8 or level >= 10:
 		turn_dark()
 	
 	# free space for generator.gd script
@@ -106,7 +116,7 @@ func generate_level(newSteps):
 	generator.free()
 	
 	for location in map:
-			tileMap.set_cellv(location, -1)
+		tileMap.set_cellv(location, -1)
 	tileMap.update_bitmask_region(borders.position, borders.end)
 
 # pause player movement when exit reached
@@ -119,7 +129,7 @@ func pause_player():
 func next_level():
 	Global.set_steps(steps+20)
 	Global.set_level(level+1)
-	Global.set_timer(timer.get_time_left()+(level*5))
+	Global.set_timer(timer.get_time_left()+(level*4))
 	#Global.set_enemies(enemies+1)
 	timer.free()
 	queue_free()

@@ -1,6 +1,6 @@
 extends Node
 
-var score_file = "user://score.save"
+var score_file = "user://GameScore.save"
 var password = "pass"
 #var password = OS.get_unique_id()
 var status
@@ -42,6 +42,6 @@ func load_score():
 		highscores = file.get_as_text()
 		file.close()
 	else:
-		return
+		return ""
 	#print("score: ", highscores)
 	return highscores

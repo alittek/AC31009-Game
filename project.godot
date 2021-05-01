@@ -20,7 +20,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="MazeGame"
+config/name="ESCAPE"
 run/main_scene="res://Scenes/StartScreen.tscn"
 config/icon="res://icon.png"
 

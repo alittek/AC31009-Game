@@ -13,10 +13,10 @@ var stolen = false
 var amount : int = 1
 var chaseDist : int = 300
 
+signal steal_time
 var triggered = false
 onready var effect = get_node("Effect")
 onready var sprite = get_node("Sprite")
-
 onready var player = get_tree().root.get_node("WorldMap/Player")
 
 func _ready():
@@ -88,10 +88,14 @@ func follow(delta):
 	move_and_slide(vel * moveSpeed)
 	animate_NPC(vel)
 
-# prcess steal state
+# process steal state
 func steal():
 	# TODO popup once when enemy first appears
-	# 
+#	if triggered == true:
+#		return
+#	triggered = true
+	if Global.level > 14:
+		emit_signal("steal_time")
 	player.lose_artifact(amount)
 	steal_artifact(amount)
 	
@@ -100,6 +104,9 @@ func steal_artifact(artToTake):
 	curArt += artToTake
 	if curArt >= maxArt:
 		stolen = true
+
+func steal_time():
+	pass
 
 # handle patrol state
 func patrol(delta):
