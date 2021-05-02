@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/select-box-arrow-top.png-9ecb1e24727bf952bdf2f2aa07fa1faa.stex"
+path="res://.import/esc-button.png-ca7b1be09370ba35570306dc1744d187.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Pics/select-box-arrow-top.png"
-dest_files=[ "res://.import/select-box-arrow-top.png-9ecb1e24727bf952bdf2f2aa07fa1faa.stex" ]
+source_file="res://Keys/esc-button.png"
+dest_files=[ "res://.import/esc-button.png-ca7b1be09370ba35570306dc1744d187.stex" ]
 
 [params]
 

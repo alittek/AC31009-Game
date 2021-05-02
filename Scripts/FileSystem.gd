@@ -1,8 +1,9 @@
 extends Node
 
-var score_file = "user://GameScore.save"
-var password = "pass"
-#var password = OS.get_unique_id()
+var score_file = "user://GameScoreEncry.bin"
+# used for file encryption
+var encry = "}K5gdp3Y5V,B6!B"
+# file status
 var status
 var highscores
 
@@ -15,22 +16,17 @@ var highscores
 
 # save a new score passed as argument
 func save_score(highscore):
+	var existing_content = ""
 	var file = File.new()
+	# if file exists, save contents
 	if file.file_exists(score_file):
-		status = file.open(score_file, File.READ_WRITE)
-		#status = file.open_encrypted_with_pass(score_file, File.READ_WRITE, password)
-		#print("exists")
-	else:
-		status = file.open(score_file, File.WRITE)
-		#status = file.open_encrypted_with_pass(score_file, File.WRITE, password)
-		#print("doesnt exist")
+		existing_content = load_score()
+	status = file.open_encrypted_with_pass(score_file, File.WRITE, encry)
 	
 	# if file was opened correctly
-	print("status: ", status)
 	if status == OK:
-		print(".....OK.....")
-		file.seek_end()
-		file.store_string(str(highscore) + ",")
+		# save existing content plus new score again
+		file.store_string(existing_content + str(highscore) + ",")
 		file.close()
 	else:
 		print("error opening file")
@@ -38,18 +34,12 @@ func save_score(highscore):
 # load all contents of the file and return them as a string
 func load_score():
 	var file = File.new()
+	# check if file to load from exists
 	if file.file_exists(score_file):
-		file.open(score_file, File.READ)
-		#file.open_encrypted_with_pass(score_file, File.READ, password)
+		# read from encrypted file
+		file.open_encrypted_with_pass(score_file, File.READ, encry)
 		highscores = file.get_as_text()
 		file.close()
 	else:
 		return ""
-	#print("score: ", highscores)
 	return highscores
-
-func _encrypt():
-	pass
-	
-func decrypt():
-	pass
