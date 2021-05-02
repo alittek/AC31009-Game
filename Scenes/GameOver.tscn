@@ -4,7 +4,6 @@
 [ext_resource path="res://Scripts/GameOver.gd" type="Script" id=2]
 [ext_resource path="res://Sounds/GameOver.wav" type="AudioStream" id=3]
 
-
 [node name="GameOver" type="Popup"]
 pause_mode = 2
 margin_right = 320.0

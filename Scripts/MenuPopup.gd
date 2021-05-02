@@ -46,4 +46,6 @@ func _input(event):
 					# Quit game, back to start screen
 					get_node("/root/WorldMap").queue_free()
 					Transition.change_stage("res://Scenes/StartScreen.tscn")
+					# reset variables to allow for new game starting level 1
+					Global.set_values()
 					get_tree().paused = false

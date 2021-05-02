@@ -12,10 +12,10 @@ func _ready():
 	set_values()
 
 func set_values():
-	steps = 40
-	level = 14
-	artifacts = 20
-	timer = 400
+	steps = 280
+	level = 13
+	artifacts = 21
+	timer = 40
 
 func set_steps(newSteps):
 	steps = newSteps
