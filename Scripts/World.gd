@@ -13,7 +13,6 @@ signal death
 var steps = Global.steps
 var level = Global.level
 var time = Global.timer
-#var enemies = Global.enemies
 
 # max sizes for world
 var xSize = 60
@@ -55,8 +54,8 @@ func remove_time():
 func _process(delta):
 	timer_label.set_text(str(int(timer.get_time_left())))
 
-# inspired by https://github.com/uheartbeast/walker-level-gen
-#
+# inspired by Youtube Tutorial by HeartBeast
+# https://www.youtube.com/watch?v=2nk6bJBTtlA
 func generate_level(newSteps):
 	steps = newSteps
 	var generator = Generator.new(Vector2(xSize/2, ySize/2), borders)
@@ -92,24 +91,24 @@ func generate_level(newSteps):
 				npc.position = room.position*32
 				npc.connect("steal_time", self, "remove_time")
 
-	# place artifacts on map 
+	# place artifacts on map, if no free space 
+	# add multiple ones in same position
 	var nbChests = 0
 	for room in generator.get_rooms():
 		if nbChests == level-1:
 			break
 		else:
-			#if free_space(room.position*32):
 			var chest = Chest.instance()
 			add_child(chest)
 			nbChests += 1
 			chest.position = room.position*32
 
-#	# print for testing
+#	# print for testing correct numbers of objects each level
 #	print("enemies: " + str(nbEnemies))
 #	print("chests: " + str(nbChests))
 #	print("______________")
 	
-	# decide when to r=turn on darkness
+	# decide when to turn on darkness
 	if level == 5 or level == 8 or level >= 10:
 		turn_dark()
 	
@@ -132,7 +131,6 @@ func next_level():
 	Global.set_steps(steps+20)
 	Global.set_level(level+1)
 	Global.set_timer(timer.get_time_left()+(level*4))
-	#Global.set_enemies(enemies+1)
 	timer.free()
 	queue_free()
 	Transition.change_stage("res://Scenes/Map.tscn")
@@ -155,9 +153,6 @@ func turn_dark():
 
 # triggered when time runs out for player
 func _on_timer_timeout():
-	#timer_label.set_text(str("0"))
-	#$SoundGameOver.play()
-	#yield($SoundGameover, "finished")
 	emit_signal("death")
 	Global.set_values()
 

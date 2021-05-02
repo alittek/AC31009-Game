@@ -21,13 +21,14 @@ margin_right = 310.0
 margin_bottom = 170.0
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "You are a researcher at an excavation site when
-suddenly you fall through the floor.
+text = "As a researcher at an excavation site you fall
+ through the floor and into an underground maze.
 Soon you discover valuable artifacts and set out to
- collect them all. 
+ collect them all and reach the exit 
+before your air runs out...
 
-But watch out, there may be other people down here
- who have their own agendas and other surprises.
+But be careful, there may be others down here
+ who are after the same artifacts.
 
 
 <Press any key to start>"
