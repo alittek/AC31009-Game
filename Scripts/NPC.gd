@@ -28,14 +28,13 @@ func _ready():
 			Color(1,1,1,1), Color(1,1,1,0), 0.3, 
 			Tween.TRANS_QUAD, Tween.EASE_OUT)
 
-# state pattern to run different NPC behaviour
+# State pattern to allow for different NPC behaviour
 func _process(delta):
-	#state pattern to allow enemy behaviour
 	match state:
 		"patrol":
 			patrol(delta)
 		"follow":
-			follow(delta)
+			follow()
 		"steal":
 			steal()
 		"flee":
@@ -82,7 +81,7 @@ func animate_NPC(direction: Vector2):
 			$AnimationPlayer.stop(false)
 
 # handle folow state
-func follow(delta):
+func follow():
 	var vel : Vector2	
 	vel = (player.position - position).normalized()
 	move_and_slide(vel * moveSpeed)
@@ -90,10 +89,10 @@ func follow(delta):
 
 # process steal state
 func steal():
-	# TODO popup once when enemy first appears
 	# if high level also steal time from player
 	if Global.level > 14:
 		emit_signal("steal_time")
+	# steal artifacts
 	player.lose_artifact(amount)
 	steal_artifact(amount)
 	
@@ -114,7 +113,7 @@ func patrol(delta):
 	var movement = direc * moveSpeed * delta
 	var collision = move_and_slide(movement)
 
-# enemy disapears
+# enemy disapears state
 func flee():
 	$AnimationPlayer.stop(false)
 	effect.start()

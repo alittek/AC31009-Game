@@ -8,12 +8,11 @@ var status
 var highscores
 
 # adding scores for testing
-func start():
+#func start():
 #	save_score(30)
 #	save_score(4)
 #	save_score(100)
 #	save_score(12)
-	pass
 
 # save a new score passed as argument
 func save_score(highscore):
@@ -40,7 +39,6 @@ func load_score():
 		# read from encrypted file
 		file.open_encrypted_with_pass(score_file, File.READ, encry)
 		highscores = file.get_as_text()
-		print("score: ", highscores)
 		file.close()
 	else:
 		return ""

@@ -32,11 +32,11 @@ func update_artNb_text():
 	var number = calc_totalAtrifacts(Global.level-1)
 	finalArt.text = str(Global.artifacts) + " / " + str(number)
 
-# upfdate the level text
+# update the level text
 func update_level_text():
 	finalLevel.text = str(Global.level)
 
-# upfdate the score text
+# update the score text
 func update_score_text(newScore):
 	finalScore.text = str(newScore)
 
@@ -60,7 +60,6 @@ func death_menu():
 	update_level_text()
 	# display gameover screen
 	popup()
-	#$SoundGameOver.set_volume_db(2)
 	$SoundGameOver.play()
 	yield($SoundGameOver, "finished")
 

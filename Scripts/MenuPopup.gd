@@ -41,7 +41,6 @@ func _input(event):
 					# Resume game
 					if not already_paused:
 						get_tree().paused = false
-					#player.set_process_input(true)
 					hide()
 				1:
 					# Quit game, back to start screen

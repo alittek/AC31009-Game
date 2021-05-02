@@ -62,7 +62,6 @@ func lose_artifact(amount):
 	Global.set_artifacts(newArti)
 	ui.update_artNb_text(Global.artifacts)
 	$SoundEnemy.play()
-	#get_node("Light2D").show()
 
 # allows to disable player movement
 func disable_movement():

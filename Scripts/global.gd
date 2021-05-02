@@ -1,5 +1,7 @@
 extends Node
 
+# Singleton pattern used here to store persistent data 
+# between scenes to set increasing level difficulty 
 var steps
 var level
 var artifacts
@@ -11,10 +13,9 @@ func _ready():
 
 func set_values():
 	steps = 40
-	level = 1
-	artifacts = 0
-	timer = 40
-	#enemies = 0
+	level = 14
+	artifacts = 20
+	timer = 400
 
 func set_steps(newSteps):
 	steps = newSteps
@@ -27,6 +28,3 @@ func set_artifacts(newArtifact):
 
 func set_timer(newTimer):
 	timer = newTimer
-	
-#func set_enemies(newEnemies):
-#	enemies = newEnemies

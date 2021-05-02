@@ -51,7 +51,7 @@ func step():
 # place room and move into different direction
 func change_direction():
 	place_room(position)
-	#reset steps when turning
+	# reset steps when turning
 	steps_since_turn = 0
 	var directions = DIRECTIONS.duplicate()
 	directions.erase(direction)
@@ -91,8 +91,6 @@ func get_rooms():
 				if room[key] < Vector2(1,2):
 					newRooms.erase(room)
 	var newSize = newRooms.size()
-	# remove first and last few rooms to 
-	#var result = newRooms.slice(1, newSize-2)
 	var result = newRooms
 	return result
 
