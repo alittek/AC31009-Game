@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/playerProfessor.png-8a0510a108121262ca43bd577f51062c.stex"
+path="res://.import/select-box-arrow-top.png-1223df4513215117cbdcc3523becd4ba.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://NPC/playerProfessor.png"
-dest_files=[ "res://.import/playerProfessor.png-8a0510a108121262ca43bd577f51062c.stex" ]
+source_file="res://Keys/select-box-arrow-top.png"
+dest_files=[ "res://.import/select-box-arrow-top.png-1223df4513215117cbdcc3523becd4ba.stex" ]
 
 [params]
 
