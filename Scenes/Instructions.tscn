@@ -2,12 +2,18 @@
 
 [ext_resource path="res://Font/Font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Scripts/Help.gd" type="Script" id=2]
+<<<<<<< Updated upstream
 [ext_resource path="res://Pics/space-button.png" type="Texture" id=4]
 [ext_resource path="res://Pics/select-box-arrow-top.png" type="Texture" id=5]
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
 load_path = "res://.import/esc-button.png-65c4f64a1f48f7e65d6479541fa2db7a.stex"
+=======
+[ext_resource path="res://Keys/esc-button.png" type="Texture" id=3]
+[ext_resource path="res://Keys/space-button.png" type="Texture" id=4]
+[ext_resource path="res://Keys/arrows.png" type="Texture" id=5]
+>>>>>>> Stashed changes
 
 [node name="Help" type="Control"]
 margin_right = 40.0
@@ -113,10 +119,9 @@ scale = Vector2( 0.025, 0.025 )
 texture = ExtResource( 5 )
 
 [node name="SpriteEsc" type="Sprite" parent="Instructions/Esc2"]
-position = Vector2( 30, 77.5 )
+position = Vector2( 30, 75 )
 scale = Vector2( 0.05, 0.05 )
-texture = SubResource( 1 )
-region_rect = Rect2( 0, 0, 510, 400 )
+texture = ExtResource( 3 )
 
 [node name="SpriteSpace" type="Sprite" parent="Instructions/Esc2"]
 position = Vector2( 30, 125 )
