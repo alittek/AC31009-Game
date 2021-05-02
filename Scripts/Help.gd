@@ -1,6 +1,5 @@
 extends Control
 
-onready var label : Label = get_node("Instructions/Label_text")
 signal close
 
 # close help and return to menu

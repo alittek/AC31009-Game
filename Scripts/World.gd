@@ -104,10 +104,10 @@ func generate_level(newSteps):
 			nbChests += 1
 			chest.position = room.position*32
 
-	# print for testing
-	print("enemies: " + str(nbEnemies))
-	print("chests: " + str(nbChests))
-	print("______________")
+#	# print for testing
+#	print("enemies: " + str(nbEnemies))
+#	print("chests: " + str(nbChests))
+#	print("______________")
 	
 	# decide when to r=turn on darkness
 	if level == 5 or level == 8 or level >= 10:

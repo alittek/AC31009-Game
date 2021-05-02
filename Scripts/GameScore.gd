@@ -11,7 +11,7 @@ var array = []
 
 func _ready():
 	# used fortesting to add values to file
-	#file.start()
+	file.start()
 	#play sound
 	var scores = file.load_score()
 	if scores != "":
