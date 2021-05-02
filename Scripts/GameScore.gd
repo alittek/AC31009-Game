@@ -11,10 +11,11 @@ var array = []
 
 func _ready():
 	# used fortesting to add values to file
-	#file.start()
+	file.start()
 	#play sound
 	var scores = file.load_score()
-	create_scores(scores)
+	if scores != "":
+		create_scores(scores)
 
 # display the top five scores in the right labels
 func display_score():
@@ -36,6 +37,7 @@ func create_scores(score):
 	var scoreArray = []
 	var intArray = []
 	# split string of scores into array
+	# scoreArray.size() > 0:
 	scoreArray = score.split(",", true, 0)
 	# remove last empty index
 	scoreArray.remove(scoreArray.size()-1)

@@ -29,5 +29,5 @@ shape = SubResource( 1 )
 
 [node name="SoundExit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
-volume_db = 24.0
+volume_db = 19.0
 [connection signal="body_entered" from="." to="." method="_on_ExitDoor_body_entered"]
