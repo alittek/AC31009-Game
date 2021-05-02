@@ -44,8 +44,7 @@ margin_right = 190.0
 margin_bottom = 35.0
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "MOVE THE PLAYER,
-MOVE IN MENU"
+text = "MOVE THE PLAYER"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -58,7 +57,8 @@ margin_right = 190.0
 margin_bottom = 85.0
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "OPEN IN-GAME MENU"
+text = "PAUSE GAME/
+RETURN"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false

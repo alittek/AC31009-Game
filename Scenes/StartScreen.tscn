@@ -101,16 +101,30 @@ valign = 1
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 40.0
-margin_bottom = 95.0
+margin_bottom = 105.0
 color = Color( 0.647059, 0.647059, 0.647059, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label_up" type="Label" parent="Help"]
-margin_top = 15.0
+[node name="Label_title" type="Label" parent="Help"]
 margin_right = 60.0
-margin_bottom = 35.0
+margin_bottom = 25.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Menu
+Controls"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_up" type="Label" parent="Help"]
+margin_top = 30.0
+margin_right = 60.0
+margin_bottom = 50.0
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -122,9 +136,9 @@ __meta__ = {
 }
 
 [node name="Label_down" type="Label" parent="Help"]
-margin_top = 75.0
+margin_top = 80.0
 margin_right = 60.0
-margin_bottom = 95.0
+margin_bottom = 100.0
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -136,9 +150,9 @@ __meta__ = {
 }
 
 [node name="Label_space" type="Label" parent="Help"]
-margin_top = 45.0
+margin_top = 55.0
 margin_right = 60.0
-margin_bottom = 65.0
+margin_bottom = 75.0
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -150,17 +164,17 @@ __meta__ = {
 }
 
 [node name="Up" type="Sprite" parent="Help"]
-position = Vector2( 15, 10 )
+position = Vector2( 15, 25 )
 scale = Vector2( 0.025, 0.025 )
 texture = ExtResource( 4 )
 
 [node name="Space" type="Sprite" parent="Help"]
-position = Vector2( 15, 40 )
+position = Vector2( 15, 50 )
 scale = Vector2( 0.05, 0.05 )
 texture = ExtResource( 3 )
 
 [node name="Down" type="Sprite" parent="Help"]
-position = Vector2( 15, 70 )
+position = Vector2( 15, 75 )
 rotation = 3.14159
 scale = Vector2( 0.025, 0.025 )
 texture = ExtResource( 4 )
