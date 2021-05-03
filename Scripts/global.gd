@@ -15,7 +15,7 @@ func set_values():
 	steps = 40
 	level = 1
 	artifacts = 0
-	timer = 40
+	timer = 45
 
 func set_steps(newSteps):
 	steps = newSteps
