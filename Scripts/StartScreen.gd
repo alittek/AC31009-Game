@@ -34,7 +34,7 @@ func _input(event):
 		if selected_menu > 0:
 			selected_menu = selected_menu - 1
 		else:
-			selected_menu = 2
+			selected_menu = 3
 		change_menu_color()
 	elif Input.is_action_just_pressed("interact"):
 		match selected_menu:

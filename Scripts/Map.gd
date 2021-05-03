@@ -41,11 +41,11 @@ func _ready():
 	generate_level(steps)
 
 # in use when an enemy steals time from the player
-# take 10 seconds from timer
+# take 6 seconds from timer
 func remove_time():
 	var currTime = timer.get_time_left()
-	if currTime > 10:
-		timer.set_wait_time(currTime-5) #value is in seconds: 600 seconds = 10 minutes
+	if currTime > 6:
+		timer.set_wait_time(currTime-3) #value is in seconds
 	else:
 		timer.set_wait_time(1)
 	timer.start()
@@ -107,7 +107,7 @@ func generate_level(newSteps):
 #	print("enemies: " + str(nbEnemies))
 #	print("chests: " + str(nbChests))
 #	print("______________")
-	
+
 	# decide when to turn on darkness
 	if level == 5 or level == 8 or level >= 10:
 		turn_dark()
